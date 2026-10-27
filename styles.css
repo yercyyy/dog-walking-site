@@ -415,6 +415,32 @@ code {
   background: linear-gradient(180deg, rgba(255, 253, 249, 0.82), rgba(255, 253, 249, 0.62));
 }
 
+.hero-copy h1 {
+  margin: 0 0 10px;
+  font-size: clamp(1.65rem, 1.9vw + 0.45rem, 2.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-wrap: wrap;
+}
+
+.hero-name,
+.hero-place {
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .hero-copy h1 {
+    font-size: clamp(1.02rem, 5.35vw, 1.65rem);
+  }
+
+  .hero-name,
+  .hero-place {
+    display: block;
+  }
+}
+
 .name-main {
   display: block;
   font-size: clamp(3.4rem, 12vw, 6.4rem);
