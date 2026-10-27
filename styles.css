@@ -287,7 +287,9 @@ code {
 
 .logo-text {
   font-size: 1.05rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: nowrap;
 }
 
 .site-nav {
@@ -418,6 +420,8 @@ code {
   font-size: clamp(3.4rem, 12vw, 6.4rem);
   font-weight: 700;
   color: var(--pine);
+  letter-spacing: normal;
+  word-spacing: normal;
 }
 
 .name-sub {
@@ -426,7 +430,8 @@ code {
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   font-weight: 500;
   color: var(--teal);
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
+  word-spacing: normal;
 }
 
 .tagline {
@@ -946,6 +951,8 @@ textarea[aria-invalid="true"] {
   font-family: var(--display);
   font-size: 1.5rem;
   color: #fff;
+  letter-spacing: normal;
+  word-spacing: normal;
 }
 
 .footer-note {
