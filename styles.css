@@ -368,9 +368,9 @@ code {
   overflow: hidden;
   padding-bottom: 64px;
   background:
-    url("images/seagull.svg") 18% 16% / 78px 28px no-repeat,
+    url("images/seagull.svg") right 8% top 14px / 86px 30px no-repeat,
     url("images/palm-shore.svg") center bottom / min(100%, 980px) auto no-repeat,
-    radial-gradient(circle at 74% 24%, #ffe7a8 0 36px, rgba(255, 196, 120, 0.55) 38px, rgba(255, 196, 120, 0) 120px),
+    radial-gradient(circle at 84% 26px, #ffe7a8 0 34px, rgba(255, 196, 120, 0.55) 36px, rgba(255, 196, 120, 0) 110px),
     linear-gradient(180deg, #f4a261 0%, #f8d7a2 22%, #f7f1e4 46%, #8ecae6 72%, #1a7f8c 100%);
 }
 
@@ -513,7 +513,7 @@ code {
 #gallery {
   overflow: hidden;
   background:
-    url("images/shell.svg") right 28px top 24px / 54px 40px no-repeat,
+    url("images/shell.svg") right 18px top 12px / 54px 40px no-repeat,
     radial-gradient(circle at 18% 30%, rgba(255, 255, 255, 0.55), transparent 22%),
     radial-gradient(circle at 78% 70%, rgba(255, 255, 255, 0.4), transparent 18%),
     linear-gradient(180deg, #e5f7fb 0%, #b7e4ef 48%, #8fd0cf 100%);
@@ -521,8 +521,8 @@ code {
 
 #contact {
   background:
-    url("images/palm-shore.svg") right bottom / 280px auto no-repeat,
-    radial-gradient(circle at 82% 16%, #ffe7a8 0 34px, rgba(255, 168, 96, 0.45) 36px, transparent 130px),
+    url("images/palm-shore.svg") right 2% bottom 0 / 300px auto no-repeat,
+    radial-gradient(circle at calc(100% - 48px) 30px, #ffe7a8 0 30px, rgba(255, 168, 96, 0.5) 32px, transparent 108px),
     linear-gradient(165deg, #fff1d2 0%, #ffd0a4 46%, #f4a06a 78%, #e07a5f 100%);
 }
 
@@ -1389,6 +1389,229 @@ textarea[aria-invalid="true"] {
     transform: none;
     transition: opacity 0.6s ease, transform 0.6s ease;
     transition-delay: var(--reveal-delay, 0ms);
+  }
+}
+
+/* Readable sea glass: near-white words on deep ocean panels.
+   Artwork stays in the open around the panels. */
+
+:root {
+  --sea-glass: rgba(7, 28, 38, 0.74);
+  --sea-ink: #f7fcfb;
+  --sea-gold: #ffe7c2;
+  --sea-shadow: 0 1px 1px rgba(0, 0, 0, 0.55);
+}
+
+.hero-inner {
+  padding-top: 58px;
+}
+
+.hero-copy,
+.about-grid > div:first-child,
+.about-card,
+.section-head,
+.price-list,
+.contact-card,
+.contact-layout > div:first-child,
+.form-card,
+.gallery-card figcaption {
+  color: var(--sea-ink);
+  text-shadow: var(--sea-shadow);
+}
+
+.hero-copy,
+.about-grid > div:first-child,
+.about-card,
+.section-head,
+.price-list,
+.contact-card,
+.contact-layout > div:first-child,
+.form-card {
+  background: var(--sea-glass);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.hero-copy,
+.about-grid > div:first-child,
+.section-head,
+.contact-layout > div:first-child {
+  padding: 22px 24px 16px;
+  border-radius: 28px;
+}
+
+.about-card,
+.form-card {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: none;
+}
+
+.section-head {
+  max-width: 42rem;
+}
+
+#contact {
+  padding-bottom: 132px;
+}
+
+.gallery-card figcaption {
+  display: inline-block;
+  max-width: 100%;
+  margin: 10px 2px 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--sea-glass);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.area-panel {
+  background:
+    radial-gradient(circle at 100% 120%, rgba(22, 140, 150, 0.4), transparent 48%),
+    rgba(5, 22, 32, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.area-panel .place-card {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.place-card svg path {
+  fill: #f7fcfb;
+}
+
+.place-card svg circle {
+  fill: #08343c;
+}
+
+.hero-copy :is(.kicker, .name-main, .tagline, .lede, h1, .hero-facts, li),
+.about-grid > div:first-child :is(.kicker, h2, p),
+.about-card :is(h3, li),
+.section-head :is(.kicker, h2, .lede),
+.price-list :is(h3, .price-desc, .rate, .rate strong, .rate span),
+.area-panel :is(h2, .kicker, .lede, .lede-light, .place-city, .place-state),
+.contact-card :is(.contact-kicker, .contact-value),
+.contact-layout > div:first-child :is(h3, .contact-place, .lede, p),
+.form-card :is(h3, label, .form-hint),
+.gallery-card figcaption {
+  color: var(--sea-ink);
+  text-shadow: var(--sea-shadow);
+}
+
+.hero-copy .kicker,
+.hero-copy .name-sub,
+.about-grid > div:first-child .kicker,
+.section-head .kicker,
+.area-panel .kicker,
+.contact-card .contact-kicker,
+.price-list .price-for,
+.area-panel .place-state {
+  color: var(--sea-gold);
+}
+
+.hero-copy .button,
+.form-card .button,
+.price-list .rate-notes,
+.price-list .rate-notes strong,
+.price-list .rate-notes span,
+.about-card .steps li::before,
+.form-card .optional,
+.form-card .field-error,
+.form-card .form-status,
+.form-card input,
+.form-card select,
+.form-card textarea {
+  text-shadow: none;
+}
+
+.hero-copy .button-primary,
+.form-card .button-primary {
+  background: #f6ead4;
+  color: #102e2b;
+  border-color: transparent;
+}
+
+.hero-copy .button-primary:hover,
+.form-card .button-primary:hover {
+  background: #fffaf2;
+  color: #102e2b;
+}
+
+.hero-copy .button-secondary {
+  color: #f7fcfb;
+  background: rgba(5, 20, 28, 0.55);
+  border-color: rgba(247, 252, 251, 0.9);
+}
+
+.hero-copy .button-secondary:hover {
+  background: rgba(5, 20, 28, 0.72);
+  color: #fff;
+}
+
+.about-card .steps li::before {
+  background: #f7fcfb;
+  color: #102e2b;
+}
+
+.price-list .price-row {
+  border-top-color: rgba(255, 255, 255, 0.18);
+}
+
+.price-list .rate-notes li {
+  background: #fffdf9;
+  color: #102e2b;
+}
+
+.price-list .rate-notes strong,
+.price-list .rate-notes span {
+  color: #102e2b;
+}
+
+.form-card .optional {
+  color: #d7efeb;
+}
+
+.form-card .field-error {
+  color: #ffd0c4;
+}
+
+.contact-card {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+}
+
+.contact-card:hover {
+  border-color: #ffe7c2;
+}
+
+.form-card input,
+.form-card select,
+.form-card textarea {
+  color: #14221f;
+  background: #fff;
+  border-color: rgba(20, 40, 44, 0.28);
+}
+
+.hero-copy :focus-visible,
+.about-grid :focus-visible,
+.section-head :focus-visible,
+.price-list :focus-visible,
+.area-panel :focus-visible,
+.contact-card:focus-visible,
+.form-card :focus-visible,
+.gallery-card :focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #102e2b;
+}
+
+@media (max-width: 800px) {
+  .hero {
+    background-position: right 10px top 12px, center bottom, center, center;
   }
 }
 
