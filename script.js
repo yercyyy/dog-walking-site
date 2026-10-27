@@ -1,10 +1,6 @@
-// Mobile menu, photo viewer, and the contact form check.
-// You can ignore this file until you want the form to do more.
-//
-// PLACEHOLDER email. The form does not send mail. It only mentions this
-// address in the note visitors see after they press the button.
-// Change it to your real email if you uncomment the mailto lines below.
-const CONTACT_EMAIL = "you@example.com";
+// Mobile menu, photo viewer, and the contact form.
+// The form opens the visitor's email app. It does not send mail by itself.
+const CONTACT_EMAIL = "njahshaun@gmail.com";
 
 (function () {
   const header = document.querySelector(".site-header");
@@ -152,16 +148,23 @@ const CONTACT_EMAIL = "you@example.com";
     }
 
     const name = document.getElementById("name").value.trim();
-    status.className = "form-status is-visible";
-    status.textContent = "Thanks, " + name + ". This form does not send email yet, so nothing went to " + CONTACT_EMAIL + ". Add your real email in script.js and index.html when you want messages.";
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("visitor-phone").value.trim();
+    const dog = document.getElementById("dog").value.trim();
+    const service = document.getElementById("service").value;
+    const message = document.getElementById("message").value.trim();
+    const body = [
+      "Name: " + name,
+      "Email: " + email,
+      "Phone: " + (phone || "(not given)"),
+      "Dog: " + (dog || "(not given)"),
+      "Service: " + service,
+      "",
+      message
+    ].join("\n");
 
-    // To open the visitor's email app instead, delete the status lines above
-    // and uncomment the lines below. Set CONTACT_EMAIL at the top of this
-    // file to your real address first.
-    //
-    // const service = document.getElementById("service").value;
-    // const message = document.getElementById("message").value.trim();
-    // const body = "Name: " + name + "\nService: " + service + "\n\n" + message;
-    // window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Dog walk request") + "&body=" + encodeURIComponent(body);
+    status.className = "form-status is-visible";
+    status.textContent = "Opening your email app with this message to " + CONTACT_EMAIL + ".";
+    window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Dog walk request from " + name) + "&body=" + encodeURIComponent(body);
   });
 })();

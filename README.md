@@ -1,66 +1,35 @@
 # NDW - Florida
 
-A one-page website for a dog walking business in Melbourne, Florida. It is plain HTML, CSS, and a little JavaScript. There is no build step and nothing to install. You can put it online for free with GitHub Pages.
+A one-page website for Neighborhood Dog Walkers in Melbourne, Florida. It is plain HTML, CSS, and a little JavaScript. There is no build step.
 
-Open `index.html` in a web browser to see the site.
-
-Phone numbers, email addresses, and prices on the page are **placeholders**. Search this project for the word `PLACEHOLDER` and replace them before you share the link.
+Open `index.html` in a web browser to see the site. The live site is [https://yercyyy.github.io/dog-walking-site/](https://yercyyy.github.io/dog-walking-site/). A change shows up there after it is merged into `main`.
 
 ## What each file does
 
-- `index.html` — the page itself: the words, the sections, and which pictures to show.
-- `styles.css` — colors, spacing, and the phone layout. The color names are at the top of the file.
-- `script.js` — the mobile menu, the larger photo view, and the contact form check. The form does not send email.
-- `images/` — pictures. The files there now are drawings, not real photos. See `images/README.md`.
+- `index.html` — the page: words, prices, contact details, and the gallery.
+- `styles.css` — colors, spacing, and the phone layout. Color names are at the top.
+- `script.js` — the mobile menu, the larger photo view, and the contact form. The form opens the visitor's email app with a message to `njahshaun@gmail.com`.
+- `images/` — photos, short videos, and the browser icon. See `images/README.md`.
 - `fonts/` — the Fraunces and Nunito typefaces. You can ignore this folder.
 - `.nojekyll` — an empty file. It tells GitHub Pages to publish every file as-is. Leave it there.
 - `README.md` — this guide.
 
-## Look at the site on your computer
+## Change a price or a sentence
 
-1. Find `index.html` in this folder.
-2. Double-click it, or drag it into Chrome, Firefox, Safari, or Edge.
-3. To see the phone layout, make the browser window narrow. In Chrome you can also right-click the page, choose **Inspect**, and click the phone-shaped icon.
+Open `index.html` in a text editor. The prices are in the Services section. The About Us text is three paragraphs. The phone number is `929-782-5530` (`tel:+19297825530`) and the email is `njahshaun@gmail.com`. The same email is at the top of `script.js` as `CONTACT_EMAIL`.
 
-## Put in your own words, prices, and contact details
+## Add or replace a photo
 
-Open `index.html` in any text editor (Notepad, TextEdit, VS Code, or the pencil icon on GitHub). Search for `PLACEHOLDER`.
+1. Put the photo in the `images` folder. JPG is fine.
+2. In the gallery in `index.html`, copy one of the existing photo blocks and change `src` and the `alt` text.
+3. Save and refresh the browser.
 
-- **Prices.** Each service shows `$XX`. Replace that with your real price, and remove the "placeholder" label when you do.
-- **Phone.** Replace `(000) 000-0000`. Also change `tel:+10000000000` to your number. Digits only, with your country code. A US example looks like `tel:+13215551212`.
-- **Email.** Replace `you@example.com` in both the link and the `mailto:` part. Then open `script.js` and change `CONTACT_EMAIL` at the top to the same address.
-- **About.** Replace the dashed note with a few sentences about you. Do not leave the word "placeholder" on something you want customers to trust.
-- **Service area.** The page says Melbourne, Florida. Add neighborhoods only if you really cover them.
+Videos use a `<video>` tag with `muted`, `playsinline`, and `controls`.
 
-Save the file and refresh the browser.
+## GitHub Pages
 
-The contact form only checks that a name, email, service, and message are filled in. Then it stops. It does **not** deliver the message. Until you are ready for more, customers can use the phone and email links. If you later want the button to open the visitor's email app, the comments at the bottom of `script.js` show how.
-
-## Swap in real photos
-
-The gallery and the big picture at the top are drawings so the page is not empty.
-
-1. Put your photo in the `images` folder. Example: `images/walk-1.jpg`.
-2. In `index.html`, change `src="images/placeholder-walk.svg"` to `src="images/walk-1.jpg"`.
-3. Change the `alt` text so it describes that photo.
-
-`images/README.md` lists every picture and which part of the page uses it. Use photos you took or have permission to use.
-
-## Turn on GitHub Pages
-
-GitHub Pages turns this folder into a public website. The files need to be on the `main` branch, which is the usual branch after a pull request is merged.
-
-1. On GitHub, open this repository: [yercyyy/dog-walking-site](https://github.com/yercyyy/dog-walking-site).
-2. Click **Settings**.
-3. In the left sidebar, click **Pages**.
-4. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
-5. Set the branch to **main** and the folder to **/ (root)**.
-6. Click **Save**.
-
-Wait a minute or two. GitHub will show a link near the top of the Pages settings. For this repository that address is:
+This repository already publishes the `main` branch from the folder `/` (root). After a pull request is merged, wait a minute and reload:
 
 https://yercyyy.github.io/dog-walking-site/
 
-That link is the live site. When you change files on `main`, the site updates after a short wait.
-
-If Pages offers **GitHub Actions** instead of a branch, switch **Source** back to **Deploy from a branch** so it serves this folder directly.
+If the Pages source was changed, set it back to **Deploy from a branch**, branch **main**, folder **/ (root)**.
