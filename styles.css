@@ -1653,7 +1653,7 @@ textarea[aria-invalid="true"] {
   box-shadow: 0 0 0 6px #102e2b;
 }
 
-/* Contact popup opened from the price cards */
+/* Call sheet opened from the price cards */
 .price-list .price-row {
   cursor: pointer;
 }
@@ -1673,90 +1673,162 @@ textarea[aria-invalid="true"] {
   }
 }
 
-#contact-dialog {
-  border: none;
-  padding: 0;
-  background: transparent;
-  color: var(--sea-ink);
-  width: min(440px, calc(100vw - 24px));
-  max-height: calc(100vh - 24px);
-}
-
-#contact-dialog::backdrop {
-  background: rgba(15, 32, 29, 0.72);
-}
-
-.contact-dialog-card {
-  background: rgba(5, 22, 32, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 28px;
-  padding: 16px;
-  max-height: calc(100vh - 24px);
-  overflow: auto;
-}
-
-.contact-dialog-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 4px 6px 12px;
-}
-
-.contact-dialog-head h2 {
+#call-sheet {
+  box-sizing: border-box;
   margin: 0;
-  font-family: var(--display);
-  font-size: 1.45rem;
-  font-weight: 700;
-  color: #fff;
+  padding: 0;
+  border: none;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  background: transparent;
+  color: #1c1c1e;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-#contact-dialog .dialog-close {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.4);
-  color: #fff;
+#call-sheet[open] {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0);
+  transition: background-color 0.34s ease;
 }
 
-#contact-dialog .dialog-close:hover {
-  border-color: #ffe7c2;
+#call-sheet[open].is-shown {
+  background: rgba(0, 0, 0, 0.4);
 }
 
-.contact-dialog-options {
-  display: grid;
-  gap: 12px;
+#call-sheet::backdrop {
+  background: transparent;
 }
 
-.contact-dialog-option {
+.call-sheet-stack {
+  width: min(400px, calc(100% - 16px));
+  margin: 0 0 calc(8px + env(safe-area-inset-bottom, 0px));
   display: flex;
   flex-direction: column;
+  gap: 8px;
+  transform: translateY(110%);
+  transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+#call-sheet.is-shown .call-sheet-stack {
+  transform: translateY(0);
+}
+
+.call-sheet-group,
+.call-sheet-cancel {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 14px;
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+}
+
+.call-sheet-group {
+  overflow: hidden;
+}
+
+.call-sheet-number {
+  margin: 0;
+  padding: 18px 16px 16px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: #1c1c1e;
+}
+
+.call-sheet-call,
+.call-sheet-cancel {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 4px;
-  min-height: 72px;
-  padding: 14px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
+  width: 100%;
+  min-height: 57px;
+  margin: 0;
+  padding: 14px 16px;
+  border: 0;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
   text-decoration: none;
-  overflow-wrap: anywhere;
+  color: #007aff;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.contact-dialog-option .contact-kicker {
-  color: var(--sea-gold);
+.call-sheet-call {
+  border-top: 0.5px solid rgba(60, 60, 67, 0.29);
 }
 
-.contact-dialog-option .contact-value {
-  color: #fff;
-  font-weight: 800;
+.call-sheet-cancel {
+  font-weight: 600;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
 }
 
-.contact-dialog-option:hover {
-  border-color: #ffe7c2;
+.call-sheet-call:active,
+.call-sheet-cancel:active {
+  background: rgba(0, 0, 0, 0.08);
 }
 
-#contact-dialog :focus-visible {
-  outline: 3px solid #fff;
-  outline-offset: 3px;
+#call-sheet :focus-visible {
+  outline: 3px solid #007aff;
+  outline-offset: -3px;
+}
+
+@media (hover: hover) {
+  .call-sheet-call:hover,
+  .call-sheet-cancel:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #call-sheet {
+    color: #f2f2f7;
+  }
+
+  .call-sheet-group,
+  .call-sheet-cancel {
+    background: rgba(44, 44, 46, 0.94);
+  }
+
+  .call-sheet-number {
+    color: #f2f2f7;
+  }
+
+  .call-sheet-call,
+  .call-sheet-cancel {
+    color: #0a84ff;
+  }
+
+  .call-sheet-call {
+    border-top-color: rgba(84, 84, 88, 0.65);
+  }
+
+  .call-sheet-call:active,
+  .call-sheet-cancel:active {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (hover: hover) and (prefers-color-scheme: dark) {
+  .call-sheet-call:hover,
+  .call-sheet-cancel:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
 }
 
 @media (max-width: 800px) {

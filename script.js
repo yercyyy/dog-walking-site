@@ -75,49 +75,108 @@ const CONTACT_EMAIL = "njahshaun@gmail.com";
     });
   }
 
-  const contactDialog = document.querySelector("#contact-dialog");
-  const contactTitle = document.querySelector("#contact-dialog-title");
-  const contactClose = document.querySelector("#contact-dialog-close");
+  const callSheet = document.querySelector("#call-sheet");
+  const callCancel = document.querySelector("#call-sheet-cancel");
 
-  if (contactDialog && contactTitle) {
+  if (callSheet && typeof callSheet.showModal === "function") {
     let opener = null;
+    let closing = false;
 
-    function openContact(row) {
-      const name = row.querySelector("h3");
-      contactTitle.textContent = name ? name.textContent.replace(/\s+/g, " ").trim() : "";
+    function motionReduced() {
+      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+
+    function openCallSheet(row) {
+      if (callSheet.open || closing) return;
       opener = row;
-      if (typeof contactDialog.showModal === "function" && !contactDialog.open) {
-        contactDialog.showModal();
-        const first = contactDialog.querySelector(".contact-dialog-option");
-        if (first) first.focus();
+      callSheet.showModal();
+      const callLink = callSheet.querySelector(".call-sheet-call");
+      if (motionReduced()) {
+        callSheet.classList.add("is-shown");
+        if (callLink) callLink.focus();
+        return;
       }
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          if (!callSheet.open) return;
+          callSheet.classList.add("is-shown");
+          if (callLink) callLink.focus();
+        });
+      });
+    }
+
+    function finishClose() {
+      closing = false;
+      callSheet.classList.remove("is-shown");
+      if (callSheet.open) callSheet.close();
+    }
+
+    function closeCallSheet() {
+      if (!callSheet.open || closing) return;
+      if (motionReduced() || !callSheet.classList.contains("is-shown")) {
+        finishClose();
+        return;
+      }
+      closing = true;
+      callSheet.classList.remove("is-shown");
+      const stack = callSheet.querySelector(".call-sheet-stack");
+      let settled = false;
+      function done(event) {
+        if (settled) return;
+        if (event && event.target !== stack) return;
+        if (event && event.propertyName !== "transform") return;
+        settled = true;
+        if (stack) stack.removeEventListener("transitionend", done);
+        finishClose();
+      }
+      if (stack) stack.addEventListener("transitionend", done);
+      window.setTimeout(function () {
+        if (settled) return;
+        settled = true;
+        if (stack) stack.removeEventListener("transitionend", done);
+        finishClose();
+      }, 450);
     }
 
     document.querySelectorAll("#services .price-row").forEach(function (row) {
       row.setAttribute("role", "button");
       row.setAttribute("tabindex", "0");
       row.setAttribute("aria-haspopup", "dialog");
-      row.addEventListener("click", function () { openContact(row); });
+      row.addEventListener("click", function () { openCallSheet(row); });
       row.addEventListener("keydown", function (event) {
         if (event.target !== row) return;
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          openContact(row);
+          openCallSheet(row);
         }
       });
     });
 
-    if (contactClose) {
-      contactClose.addEventListener("click", function () {
-        contactDialog.close();
+    const callLink = callSheet.querySelector(".call-sheet-call");
+    if (callLink) {
+      callLink.addEventListener("click", function () {
+        closeCallSheet();
       });
     }
 
-    contactDialog.addEventListener("click", function (event) {
-      if (event.target === contactDialog) contactDialog.close();
+    if (callCancel) {
+      callCancel.addEventListener("click", function () {
+        closeCallSheet();
+      });
+    }
+
+    callSheet.addEventListener("click", function (event) {
+      if (event.target === callSheet) closeCallSheet();
     });
 
-    contactDialog.addEventListener("close", function () {
+    callSheet.addEventListener("cancel", function (event) {
+      event.preventDefault();
+      closeCallSheet();
+    });
+
+    callSheet.addEventListener("close", function () {
+      closing = false;
+      callSheet.classList.remove("is-shown");
       if (opener) opener.focus();
       opener = null;
     });

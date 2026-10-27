@@ -339,26 +339,13 @@
     </div>
   </dialog>
 
-  <dialog id="contact-dialog" aria-labelledby="contact-dialog-title">
-    <div class="contact-dialog-card">
-      <div class="contact-dialog-head">
-        <h2 id="contact-dialog-title"></h2>
-        <button class="dialog-close" id="contact-dialog-close" type="button" aria-label="Close">&times;</button>
+  <dialog id="call-sheet" role="dialog" aria-modal="true" aria-labelledby="call-sheet-title" tabindex="-1">
+    <div class="call-sheet-stack">
+      <div class="call-sheet-group">
+        <p id="call-sheet-title" class="call-sheet-number">929-782-5530</p>
+        <a class="call-sheet-call" href="tel:+19297825530">Call</a>
       </div>
-      <div class="contact-dialog-options">
-        <a class="contact-dialog-option" href="tel:+19297825530">
-          <span class="contact-kicker">Call</span>
-          <span class="contact-value">929-782-5530</span>
-        </a>
-        <a class="contact-dialog-option" href="sms:+19297825530">
-          <span class="contact-kicker">Text</span>
-          <span class="contact-value">929-782-5530</span>
-        </a>
-        <a class="contact-dialog-option" href="mailto:njahshaun@gmail.com">
-          <span class="contact-kicker">Email</span>
-          <span class="contact-value">njahshaun@gmail.com</span>
-        </a>
-      </div>
+      <button class="call-sheet-cancel" id="call-sheet-cancel" type="button">Cancel</button>
     </div>
   </dialog>
 
