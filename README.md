@@ -10,7 +10,7 @@ Open `index.html` in a web browser to see the site. The live site is [https://nd
 - `styles.css` — colors, spacing, and the phone layout. Color names are at the top.
 - `script.js` — the mobile menu, the larger photo view, and the contact form. The form opens the visitor's email app with a message to `njahshaun@gmail.com`.
 - `images/` — photos, short videos, and the browser icon. See `images/README.md`.
-- `fonts/` — the Fraunces and Nunito typefaces. You can ignore this folder.
+- `fonts/` — the Poppins typeface. You can ignore this folder.
 - `.nojekyll` — an empty file. It tells GitHub Pages to publish every file as-is. Leave it there.
 - `CNAME` — one line, `ndwflorida.com`. It tells GitHub Pages to serve this site on that domain.
 - `README.md` — this guide.

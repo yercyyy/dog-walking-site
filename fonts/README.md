@@ -1,8 +1,7 @@
 # Fonts
 
-This folder holds the typefaces the page uses. You can ignore it.
+This folder holds the typeface the page uses. You can ignore it.
 
-- **Fraunces** is used for the big headings.
-- **Nunito** is used for everything else.
+- **Poppins** is used for the whole page, headings and text.
 
-Both fonts are free and open source under the SIL Open Font License. The license text is in `OFL.txt`.
+Poppins is free and open source under the SIL Open Font License. The license text is in `OFL.txt`.
