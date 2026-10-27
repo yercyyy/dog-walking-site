@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" fill="none">
+  <title>Placeholder illustration of a dog outdoors</title>
+  <rect width="640" height="480" fill="#D5EFEA"/>
+  <circle cx="520" cy="78" r="42" fill="#F6D7A8"/>
+  <ellipse cx="330" cy="418" rx="260" ry="30" fill="#C5E0D6"/>
+  <path d="M150 400C158 300 146 240 176 176" stroke="#1B5E56" stroke-width="12" stroke-linecap="round"/>
+  <path d="M176 184C130 158 78 156 52 184" stroke="#1D6B64" stroke-width="8" stroke-linecap="round"/>
+  <path d="M176 184C142 136 136 84 170 50" stroke="#21786A" stroke-width="8" stroke-linecap="round"/>
+  <path d="M176 184C206 128 258 96 276 56" stroke="#1D6B64" stroke-width="8" stroke-linecap="round"/>
+  <path d="M176 184C224 164 286 168 316 204" stroke="#174E48" stroke-width="8" stroke-linecap="round"/>
+  <path d="M90 400C94 384 92 384 96 370" stroke="#1D6B64" stroke-width="3" stroke-linecap="round"/>
+  <path d="M108 404C114 386 110 386 118 368" stroke="#1D6B64" stroke-width="3" stroke-linecap="round"/>
+  <path d="M300 292C270 278 258 246 280 232" stroke="#C99568" stroke-width="12" stroke-linecap="round"/>
+  <rect x="332" y="322" width="14" height="58" rx="7" fill="#A97850"/>
+  <rect x="430" y="316" width="14" height="64" rx="7" fill="#A97850"/>
+  <ellipse cx="400" cy="300" rx="96" ry="48" fill="#C9895C"/>
+  <ellipse cx="414" cy="312" rx="48" ry="24" fill="#E2B48A"/>
+  <rect x="352" y="326" width="16" height="60" rx="8" fill="#D7A07A"/>
+  <rect x="456" y="314" width="16" height="70" rx="8" fill="#D7A07A"/>
+  <ellipse cx="360" cy="386" rx="11" ry="6" fill="#A97850"/>
+  <ellipse cx="468" cy="384" rx="12" ry="6" fill="#A97850"/>
+  <circle cx="500" cy="262" r="40" fill="#C9895C"/>
+  <ellipse cx="478" cy="232" rx="13" ry="24" fill="#A97850" transform="rotate(-18 478 232)"/>
+  <ellipse cx="532" cy="274" rx="22" ry="14" fill="#F0D2B0"/>
+  <circle cx="548" cy="270" r="6" fill="#24312E"/>
+  <circle cx="508" cy="252" r="4.5" fill="#24312E"/>
+  <circle cx="510" cy="250" r="1.6" fill="#fff"/>
+  <path d="M468 286C486 304 516 302 534 286" stroke="#E07A5F" stroke-width="6" stroke-linecap="round"/>
+</svg>
