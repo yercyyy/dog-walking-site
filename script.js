@@ -139,16 +139,23 @@ const CONTACT_EMAIL = "njahshaun@gmail.com";
     }
 
     document.querySelectorAll("#services .price-row").forEach(function (row) {
+      const nameLink = row.querySelector("h3 a");
       row.setAttribute("role", "button");
       row.setAttribute("tabindex", "0");
       row.setAttribute("aria-haspopup", "dialog");
-      row.addEventListener("click", function () { openCallSheet(row); });
+      if (nameLink) nameLink.setAttribute("aria-haspopup", "dialog");
+      row.addEventListener("click", function (event) {
+        const link = event.target.closest("a");
+        if (link && row.contains(link)) event.preventDefault();
+        openCallSheet(row);
+      });
       row.addEventListener("keydown", function (event) {
-        if (event.target !== row) return;
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          openCallSheet(row);
-        }
+        if (event.key !== "Enter" && event.key !== " ") return;
+        const link = event.target.closest ? event.target.closest("a") : null;
+        const onLink = link && row.contains(link);
+        if (event.target !== row && !onLink) return;
+        event.preventDefault();
+        openCallSheet(row);
       });
     });
 

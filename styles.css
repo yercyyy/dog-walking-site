@@ -1658,6 +1658,25 @@ textarea[aria-invalid="true"] {
   cursor: pointer;
 }
 
+.price-row h3 a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.16em;
+}
+
+.price-row h3 a:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+@media (hover: hover) {
+  .price-row h3 a:hover {
+    color: var(--sea-gold);
+  }
+}
+
 .price-list .price-row:focus-visible {
   outline: 3px solid #fff;
   outline-offset: -6px;
