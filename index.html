@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NDW - Florida | Dog walking in Melbourne</title>
-  <meta name="description" content="NDW - Florida walks dogs in Melbourne, Florida. Daily walks, group walks, puppy visits, and pet sitting. Prices and contact details on this starter page are placeholders.">
+  <title>NDW Florida | Dog walking in Melbourne</title>
+  <meta name="description" content="NDW Florida walks dogs in Melbourne, Florida. 30-minute walks, 1-hour walks, group walks, pet sitting for dogs and cats, and dog bathing.">
   <meta name="theme-color" content="#143F3B">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
@@ -24,14 +24,14 @@
             <ellipse cx="26" cy="33" rx="10" ry="7.2" fill="#F6F1E7"/>
           </svg>
         </span>
-        <span class="logo-text">NDW - Florida</span>
+        <span class="logo-text">NDW Florida</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="nav-toggle-bars" aria-hidden="true"></span>
         <span class="visually-hidden nav-toggle-label">Open menu</span>
       </button>
       <nav id="site-nav" class="site-nav" aria-label="Primary">
-        <a href="#about">About</a>
+        <a href="#about">About Us</a>
         <a href="#services">Services</a>
         <a href="#area">Service area</a>
         <a href="#gallery">Gallery</a>
@@ -45,30 +45,21 @@
       <div class="wrap hero-inner">
         <div class="hero-copy">
           <p class="kicker">Melbourne, Florida</p>
-          <h1>
-            <span class="name-main">NDW</span>
-            <span class="name-sub">- Florida</span>
-          </h1>
+          <h1><span class="hero-name">Neighborhood Dog Walkers</span> <span class="hero-place">- Florida</span></h1>
           <p class="tagline">Unhurried walks for dogs who live here.</p>
-          <p class="lede">Daily walks, small groups, puppy visits, and pet sitting for dogs in Melbourne, FL.</p>
+          <p class="lede">Walks, group walks, pet sitting, and baths for pets in Melbourne, FL.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#contact">Plan a visit</a>
-            <a class="button button-secondary" href="#services">See services</a>
+            <a class="button button-secondary" href="#services">See prices</a>
           </div>
           <ul class="hero-facts">
             <li>Melbourne, FL</li>
-            <li>Leashed walks</li>
-            <li>Puppies welcome</li>
+            <li>Dogs and cats</li>
+            <li>Walks from $25</li>
           </ul>
         </div>
-        <!--
-          HERO PHOTO
-          This drawing is a placeholder. To use a real photo, put the file in
-          the images/ folder and change the src below. See images/README.md.
-        -->
         <figure class="hero-frame">
-          <img src="images/placeholder-hero.svg" width="720" height="560" alt="Placeholder drawing of a dog on a sunny walk. Replace with your own photo.">
-          <figcaption><span class="placeholder-tag">Placeholder</span> Your photo can go here.</figcaption>
+          <img id="hero-photo" src="images/walk-on-the-path.jpg" width="1200" height="1600" alt="A light-colored dog on a leash, standing on a paved path and looking toward the camera.">
         </figure>
       </div>
     </section>
@@ -76,13 +67,13 @@
     <section class="section band-paper" id="about">
       <div class="wrap about-grid">
         <div>
-          <p class="kicker">About</p>
-          <h2>A neighborhood dog walker</h2>
-          <p class="lede">NDW - Florida walks dogs in Melbourne, Florida — one at a time, in a small group, as a puppy visit, or while you are away.</p>
-          <aside class="owner-note">
-            <p><span class="placeholder-tag">Placeholder</span></p>
-            <p>Replace this box with two or three sentences about you: your name, what dogs can expect, and anything owners should know.</p>
-          </aside>
+          <p class="kicker">Neighborhood Dog Walkers</p>
+          <h2>About Us</h2>
+          <div class="about-copy">
+            <p>Neighborhood Dog Walkers got its start on the busy sidewalks of New York, where every walk means keeping a sharp eye out for squirrels, pigeons, and the occasional street rat a dog would love to chase. That same city-trained awareness now comes with every walk here in Melbourne, Florida.</p>
+            <p>We walk all kinds of dogs: big or small, energetic or calm, scared or aggressive, with or without prong collars. After a year of walking dogs every day, we know each one needs something a little different, and we adjust to fit your dog.</p>
+            <p>Need a little extra care? We can give your dog their medication when needed, and we'll make sure their sleeping and living area is clean before we leave.</p>
+          </div>
         </div>
         <aside class="about-card">
           <h3>A visit, simply</h3>
@@ -99,94 +90,39 @@
       <div class="wrap">
         <header class="section-head">
           <p class="kicker">Services</p>
-          <h2>Four kinds of visits</h2>
-          <p class="lede">Every price below is a placeholder. Change <strong>$XX</strong> to your real rate before you share the site.</p>
+          <h2>Prices</h2>
+          <p class="lede">Each visit is listed with its price. Group walks are priced per dog, and the total depends on how many dogs come.</p>
         </header>
-        <div class="service-grid">
-          <article class="service-card">
-            <span class="service-icon icon-walk" aria-hidden="true">
-              <svg viewBox="0 0 64 64">
-                <circle cx="18" cy="20" r="5"/>
-                <circle cx="32" cy="14" r="5.2"/>
-                <circle cx="46" cy="20" r="5"/>
-                <circle cx="14" cy="32" r="4.2"/>
-                <ellipse cx="34" cy="44" rx="14" ry="10"/>
-              </svg>
-            </span>
-            <h3>Daily walks</h3>
-            <p>One dog, out on a leash, on the days you pick.</p>
-            <p class="service-meta">Length: placeholder — write the real visit length here.</p>
-            <!-- PLACEHOLDER price: replace $XX with your real price. -->
-            <p class="price">
-              <span class="placeholder-tag">Placeholder price</span>
-              <strong class="price-amount">$XX</strong>
-              <span class="price-note">Replace $XX with your real price.</span>
-            </p>
+        <div class="price-list">
+          <article class="price-row">
+            <h3>30-minute walk</h3>
+            <p class="rate"><strong>$25</strong></p>
+            <p class="price-desc">A leashed walk for one dog.</p>
           </article>
-
-          <article class="service-card">
-            <span class="service-icon icon-group" aria-hidden="true">
-              <svg viewBox="0 0 64 64">
-                <circle cx="14" cy="22" r="4"/>
-                <circle cx="24" cy="16" r="4.2"/>
-                <circle cx="34" cy="22" r="4"/>
-                <ellipse cx="24" cy="36" rx="10" ry="7"/>
-                <circle cx="34" cy="28" r="3.4"/>
-                <circle cx="44" cy="24" r="3.6"/>
-                <circle cx="52" cy="30" r="3.2"/>
-                <ellipse cx="44" cy="44" rx="9" ry="6.5"/>
-              </svg>
-            </span>
+          <article class="price-row">
+            <h3>1-hour walk</h3>
+            <p class="rate"><strong>$45</strong></p>
+            <p class="price-desc">A longer walk for one dog.</p>
+          </article>
+          <article class="price-row">
             <h3>Group walks</h3>
-            <p>A few dogs who can walk together.</p>
-            <p class="service-meta">Length: placeholder — write the real visit length here.</p>
-            <!-- PLACEHOLDER price: replace $XX with your real price. -->
-            <p class="price">
-              <span class="placeholder-tag">Placeholder price</span>
-              <strong class="price-amount">$XX</strong>
-              <span class="price-note">Replace $XX with your real price.</span>
-            </p>
+            <p class="rate"><strong>$10</strong><span>from, per dog</span></p>
+            <p class="price-desc">Dogs who do well together.</p>
+            <ul class="rate-notes">
+              <li><strong>Up to 3</strong><span>dogs at once</span></li>
+              <li><strong>$10</strong><span>per dog to start</span></li>
+              <li><strong>Varies</strong><span>by how many dogs</span></li>
+            </ul>
           </article>
-
-          <article class="service-card">
-            <span class="service-icon icon-puppy" aria-hidden="true">
-              <svg viewBox="0 0 64 64">
-                <circle cx="16" cy="22" r="8"/>
-                <circle cx="48" cy="22" r="8"/>
-                <circle cx="32" cy="36" r="16"/>
-                <circle cx="26" cy="34" r="2.2" fill="#fffdf9"/>
-                <circle cx="38" cy="34" r="2.2" fill="#fffdf9"/>
-                <ellipse cx="32" cy="42" rx="5" ry="3.4" fill="#fffdf9"/>
-              </svg>
-            </span>
-            <h3>Puppy visits</h3>
-            <p>A shorter, gentler stop for a young dog.</p>
-            <p class="service-meta">Length: placeholder — write the real visit length here.</p>
-            <!-- PLACEHOLDER price: replace $XX with your real price. -->
-            <p class="price">
-              <span class="placeholder-tag">Placeholder price</span>
-              <strong class="price-amount">$XX</strong>
-              <span class="price-note">Replace $XX with your real price.</span>
-            </p>
+          <article class="price-row">
+            <h3>Pet sitting <span class="price-for">(dogs and cats)</span></h3>
+            <p class="rate"><strong>$15</strong><span>per hour</span></p>
+            <p class="price-desc">Time at home with a dog or a cat.</p>
           </article>
-
-          <article class="service-card">
-            <span class="service-icon icon-sit" aria-hidden="true">
-              <svg viewBox="0 0 64 64">
-                <path d="M10 30 L32 12 L54 30" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
-                <path d="M16 28 V52 H48 V28" fill="none" stroke="currentColor" stroke-width="4"/>
-                <path d="M28 52 V38 H36 V52" fill="none" stroke="currentColor" stroke-width="4"/>
-              </svg>
-            </span>
-            <h3>Pet sitting</h3>
-            <p>Time at home with your dog while you are away.</p>
-            <p class="service-meta">Length: placeholder — write the real visit length here.</p>
-            <!-- PLACEHOLDER price: replace $XX with your real price. -->
-            <p class="price">
-              <span class="placeholder-tag">Placeholder price</span>
-              <strong class="price-amount">$XX</strong>
-              <span class="price-note">Replace $XX with your real price.</span>
-            </p>
+          <article class="price-row">
+            <h3>Dog bathing</h3>
+            <p class="rate"><strong>$20</strong><span>per dog</span></p>
+            <p class="price-desc">A bath for one dog.</p>
           </article>
         </div>
       </div>
@@ -205,11 +141,7 @@
           <div class="area-copy">
             <p class="kicker kicker-light">Service area</p>
             <h2>Melbourne, Florida</h2>
-            <p class="lede lede-light">NDW - Florida walks dogs in Melbourne, FL.</p>
-            <aside class="owner-note">
-              <p><span class="placeholder-tag">Placeholder</span></p>
-              <p>Add the neighborhoods you cover, or say if you only serve part of town. Delete any place you do not actually walk.</p>
-            </aside>
+            <p class="lede lede-light">Walks, sitting, and baths based in Melbourne, FL.</p>
           </div>
           <div class="place-card">
             <svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
@@ -228,86 +160,134 @@
         <header class="section-head">
           <p class="kicker">Gallery</p>
           <h2>Out on the walk</h2>
-          <p class="lede">These are placeholder drawings. Swap in your own photos when you have them. Instructions are in <code>images/README.md</code>.</p>
+          <p class="lede">Photos and short clips from walks with NDW Florida.</p>
         </header>
-        <!--
-          GALLERY PHOTOS
-          Each picture below is a placeholder drawing in the images/ folder.
-          To use a real photo:
-            1. Copy the photo into the images/ folder, for example images/walk-1.jpg
-            2. Change src="images/placeholder-walk.svg" to src="images/walk-1.jpg"
-            3. Rewrite the alt text so it describes that photo.
-          More help: images/README.md
-        -->
-        <div class="gallery-grid">
+        <div class="gallery-grid" id="gallery-grid">
           <figure class="gallery-card">
-            <button class="gallery-open" type="button" data-caption="Daily walk — placeholder drawing">
-              <img src="images/placeholder-walk.svg" width="640" height="480" alt="Placeholder drawing of one dog on a leash. Replace with a real photo.">
+            <button class="gallery-open" type="button" data-caption="On a paved path">
+              <img src="images/walk-on-the-path.jpg" width="1200" height="1600" alt="A light-colored dog on a leash, standing on a paved path and looking toward the camera.">
             </button>
-            <figcaption>Daily walk <span class="placeholder-tag">Placeholder</span></figcaption>
+            <figcaption>On a paved path</figcaption>
           </figure>
           <figure class="gallery-card">
-            <button class="gallery-open" type="button" data-caption="Group walk — placeholder drawing">
-              <img src="images/placeholder-group.svg" width="640" height="480" alt="Placeholder drawing of two dogs standing together. Replace with a real photo.">
+            <button class="gallery-open" type="button" data-caption="Three dogs outside">
+              <img src="images/three-dogs-outside.jpg" width="1200" height="1600" alt="Three dogs standing together outdoors, one of them on a red leash.">
             </button>
-            <figcaption>Group walk <span class="placeholder-tag">Placeholder</span></figcaption>
+            <figcaption>Three dogs outside</figcaption>
           </figure>
           <figure class="gallery-card">
-            <button class="gallery-open" type="button" data-caption="Puppy visit — placeholder drawing">
-              <img src="images/placeholder-puppy.svg" width="640" height="480" alt="Placeholder drawing of a puppy with a ball. Replace with a real photo.">
+            <button class="gallery-open" type="button" data-caption="Lined up for a photo">
+              <img src="images/dogs-in-a-row.jpg" width="1200" height="1600" alt="Several dogs sitting in a row on a porch.">
             </button>
-            <figcaption>Puppy visit <span class="placeholder-tag">Placeholder</span></figcaption>
+            <figcaption>Lined up for a photo</figcaption>
           </figure>
           <figure class="gallery-card">
-            <button class="gallery-open" type="button" data-caption="Pet sitting — placeholder drawing">
-              <img src="images/placeholder-sitting.svg" width="640" height="480" alt="Placeholder drawing of a dog resting at home. Replace with a real photo.">
+            <button class="gallery-open" type="button" data-caption="Close-up on the grass">
+              <img src="images/dog-close-up-on-grass.jpg" width="1200" height="1600" alt="Close-up of a dark and tan dog with its tongue out, sitting in the grass.">
             </button>
-            <figcaption>Pet sitting <span class="placeholder-tag">Placeholder</span></figcaption>
+            <figcaption>Close-up on the grass</figcaption>
           </figure>
           <figure class="gallery-card">
-            <button class="gallery-open" type="button" data-caption="Outdoors — placeholder drawing">
-              <img src="images/placeholder-park.svg" width="640" height="480" alt="Placeholder drawing of a dog outside near a palm. Replace with a real photo.">
+            <button class="gallery-open" type="button" data-caption="In the yard">
+              <img src="images/white-dog-in-the-yard.jpg" width="1200" height="1600" alt="A white dog standing in a grassy yard.">
             </button>
-            <figcaption>Outdoors <span class="placeholder-tag">Placeholder</span></figcaption>
+            <figcaption>In the yard</figcaption>
           </figure>
           <figure class="gallery-card">
-            <button class="gallery-open" type="button" data-caption="Portrait — placeholder drawing">
-              <img src="images/placeholder-portrait.svg" width="640" height="480" alt="Placeholder drawing of a dog's face. Replace with a real photo.">
+            <button class="gallery-open" type="button" data-caption="On a red leash">
+              <img src="images/dog-on-a-red-leash.jpg" width="1200" height="1600" alt="A dog on a red leash, looking toward the camera.">
             </button>
-            <figcaption>Portrait <span class="placeholder-tag">Placeholder</span></figcaption>
+            <figcaption>On a red leash</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <button class="gallery-open" type="button" data-caption="In a red hoodie">
+              <img src="images/dog-in-a-red-hoodie.jpg" width="1200" height="2134" alt="A small dog wearing a red hoodie.">
+            </button>
+            <figcaption>In a red hoodie</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <button class="gallery-open" type="button" data-caption="Beside the car">
+              <img src="images/small-dog-by-the-car.jpg" width="1200" height="2134" alt="A small white dog standing beside an open car door.">
+            </button>
+            <figcaption>Beside the car</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <button class="gallery-open" type="button" data-caption="On a chair">
+              <img src="images/small-dog-on-a-chair.jpg" width="1200" height="1600" alt="A small dog sitting on a chair.">
+            </button>
+            <figcaption>On a chair</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <button class="gallery-open" type="button" data-caption="By the front door">
+              <img src="images/small-dog-by-the-door.jpg" width="1200" height="1600" alt="A small dog standing by a front door.">
+            </button>
+            <figcaption>By the front door</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <button class="gallery-open" type="button" data-caption="On the front porch">
+              <img src="images/white-dog-on-the-porch.jpg" width="1200" height="1600" alt="A white dog sitting on a front porch.">
+            </button>
+            <figcaption>On the front porch</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <button class="gallery-open" type="button" data-caption="On the steps">
+              <img src="images/white-dog-on-the-steps.jpg" width="1200" height="1600" alt="A fluffy white dog standing on outdoor steps.">
+            </button>
+            <figcaption>On the steps</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <button class="gallery-open" type="button" data-caption="Tongue out">
+              <img src="images/tan-dog-close-up.jpg" width="1200" height="1600" alt="Close-up of a tan dog with its tongue out.">
+            </button>
+            <figcaption>Tongue out</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <button class="gallery-open" type="button" data-caption="Riding in the car">
+              <img src="images/dog-riding-in-the-car.jpg" width="1200" height="1600" alt="A dog sitting in a car and looking toward the camera.">
+            </button>
+            <figcaption>Riding in the car</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <video src="images/clip-dog-in-the-car.mp4" muted playsinline controls preload="metadata" aria-label="Short clip of a dog panting in a car."></video>
+            <figcaption>Clip: in the car</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <video src="images/clip-dog-by-the-door.mp4" muted playsinline controls preload="metadata" aria-label="Short clip of a dog by a glass door."></video>
+            <figcaption>Clip: by the door</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <video src="images/clip-two-dogs-outside.mp4" muted playsinline controls preload="metadata" aria-label="Short clip of two small dogs outside near a gate."></video>
+            <figcaption>Clip: two dogs outside</figcaption>
           </figure>
         </div>
       </div>
     </section>
 
     <section class="section" id="contact">
-      <div class="wrap contact-grid">
-        <div>
+      <div class="wrap">
+        <header class="section-head">
           <p class="kicker">Contact</p>
           <h2>Say hello</h2>
-          <p class="lede">Call, email, or use the form. The phone number, email address, and form are placeholders until you put your own details in.</p>
-
-          <div class="contact-block">
-            <h3>Phone</h3>
-            <p><span class="placeholder-tag">Placeholder</span></p>
-            <!-- PLACEHOLDER phone: replace the number AND the tel: link with your real phone number. -->
-            <p><a class="contact-strong" href="tel:+10000000000">(000) 000-0000</a></p>
-          </div>
-
-          <div class="contact-block">
-            <h3>Email</h3>
-            <p><span class="placeholder-tag">Placeholder</span></p>
-            <!-- PLACEHOLDER email: replace you@example.com AND the mailto: link with your real email. -->
-            <p><a class="contact-strong" href="mailto:you@example.com">you@example.com</a></p>
-          </div>
-
-          <div class="contact-block">
-            <h3>Location</h3>
-            <p class="contact-strong">Melbourne, Florida</p>
-          </div>
+          <p class="lede">Call or email directly, or use the form. The form opens your email app with the message addressed to us.</p>
+        </header>
+        <div class="contact-pair">
+          <a class="contact-card" href="tel:+19297825530">
+            <span class="contact-kicker">Phone</span>
+            <span class="contact-value">929-782-5530</span>
+          </a>
+          <a class="contact-card" href="mailto:njahshaun@gmail.com">
+            <span class="contact-kicker">Email</span>
+            <span class="contact-value">njahshaun@gmail.com</span>
+          </a>
+        </div>
+        <div class="contact-layout">
+        <div>
+          <h3 class="contact-place-title">Where we are</h3>
+          <p class="contact-place">Melbourne, Florida</p>
+          <p class="lede">We walk dogs here, and we also sit with dogs and cats.</p>
         </div>
 
-        <form class="form-card" id="contact-form" action="#" method="post" novalidate>
+        <form class="form-card" id="contact-form" action="mailto:njahshaun@gmail.com" method="post" enctype="text/plain" novalidate>
           <h3>Send a note</h3>
           <div class="form-grid">
             <div class="form-row">
@@ -335,10 +315,11 @@
             <label for="service">Service</label>
             <select id="service" name="service" required>
               <option value="" selected disabled>Choose a service</option>
-              <option value="Daily walk">Daily walk</option>
+              <option value="30-minute walk">30-minute walk</option>
+              <option value="1-hour walk">1-hour walk</option>
               <option value="Group walk">Group walk</option>
-              <option value="Puppy visit">Puppy visit</option>
               <option value="Pet sitting">Pet sitting</option>
+              <option value="Dog bathing">Dog bathing</option>
             </select>
             <p class="field-error" id="service-error" hidden></p>
           </div>
@@ -347,13 +328,14 @@
             <textarea id="message" name="message" rows="5" required maxlength="800"></textarea>
             <p class="field-error" id="message-error" hidden></p>
           </div>
-          <p class="form-hint" id="form-hint">Placeholder form. It checks that the fields are filled in, then stops. It does not email anyone.</p>
-          <button class="button button-primary" type="submit">Send message</button>
+          <p class="form-hint" id="form-hint">This opens your email app with the note addressed to njahshaun@gmail.com.</p>
+          <button class="button button-primary" type="submit">Email this message</button>
           <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
           <noscript>
-            <p class="owner-note">The form checker needs JavaScript. The phone and email links above still work, and they are placeholders until you edit them.</p>
+            <p class="owner-note">JavaScript is off, so this form cannot open your email app. Call 929-782-5530 or email njahshaun@gmail.com.</p>
           </noscript>
         </form>
+        </div>
       </div>
     </section>
   </main>
@@ -361,10 +343,10 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <div>
-        <p class="footer-brand">NDW - Florida</p>
+        <p class="footer-brand">NDW Florida</p>
         <p>Dog walking in Melbourne, Florida.</p>
       </div>
-      <p class="footer-note">Phone, email, and prices on this page are placeholders.</p>
+      <p class="footer-note"><a href="tel:+19297825530">929-782-5530</a></p>
       <p><a href="#top">Back to top</a></p>
     </div>
   </footer>

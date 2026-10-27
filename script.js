@@ -1,10 +1,6 @@
-// Mobile menu, photo viewer, and the contact form check.
-// You can ignore this file until you want the form to do more.
-//
-// PLACEHOLDER email. The form does not send mail. It only mentions this
-// address in the note visitors see after they press the button.
-// Change it to your real email if you uncomment the mailto lines below.
-const CONTACT_EMAIL = "you@example.com";
+// Mobile menu, photo viewer, and the contact form.
+// The form opens the visitor's email app. It does not send mail by itself.
+const CONTACT_EMAIL = "njahshaun@gmail.com";
 
 (function () {
   const header = document.querySelector(".site-header");
@@ -152,16 +148,79 @@ const CONTACT_EMAIL = "you@example.com";
     }
 
     const name = document.getElementById("name").value.trim();
-    status.className = "form-status is-visible";
-    status.textContent = "Thanks, " + name + ". This form does not send email yet, so nothing went to " + CONTACT_EMAIL + ". Add your real email in script.js and index.html when you want messages.";
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("visitor-phone").value.trim();
+    const dog = document.getElementById("dog").value.trim();
+    const service = document.getElementById("service").value;
+    const message = document.getElementById("message").value.trim();
+    const body = [
+      "Name: " + name,
+      "Email: " + email,
+      "Phone: " + (phone || "(not given)"),
+      "Dog: " + (dog || "(not given)"),
+      "Service: " + service,
+      "",
+      message
+    ].join("\n");
 
-    // To open the visitor's email app instead, delete the status lines above
-    // and uncomment the lines below. Set CONTACT_EMAIL at the top of this
-    // file to your real address first.
-    //
-    // const service = document.getElementById("service").value;
-    // const message = document.getElementById("message").value.trim();
-    // const body = "Name: " + name + "\nService: " + service + "\n\n" + message;
-    // window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Dog walk request") + "&body=" + encodeURIComponent(body);
+    status.className = "form-status is-visible";
+    status.textContent = "Opening your email app with this message to " + CONTACT_EMAIL + ".";
+    window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Dog walk request from " + name) + "&body=" + encodeURIComponent(body);
   });
+})();
+
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var nodes = document.querySelectorAll(
+    ".section-head, .about-copy, .about-card, .price-list, .area-panel, .gallery-card, .contact-card, .form-card, .contact-layout > div:first-child"
+  );
+
+  if (!reduce) {
+    var view = window.innerHeight * 0.92;
+    nodes.forEach(function (el, index) {
+      var top = el.getBoundingClientRect().top;
+      if (top < view) {
+        el.classList.add("reveal", "is-in");
+        return;
+      }
+      el.style.setProperty("--reveal-delay", (index % 3) * 70 + "ms");
+      el.classList.add("reveal");
+      el.addEventListener("focusin", function () {
+        el.classList.add("is-in");
+      });
+    });
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-in");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px 8% 0px" });
+
+      nodes.forEach(function (el) {
+        if (!el.classList.contains("is-in")) observer.observe(el);
+      });
+    } else {
+      nodes.forEach(function (el) { el.classList.add("is-in"); });
+    }
+  }
+
+  var frame = document.querySelector(".hero-frame");
+  var allowParallax = frame && window.matchMedia("(min-width: 900px)").matches && !reduce;
+  if (!allowParallax) return;
+
+  var ticking = false;
+  function paintParallax() {
+    ticking = false;
+    var shift = Math.min(window.scrollY, 640) * 0.05;
+    frame.style.transform = "translate3d(0," + shift.toFixed(1) + "px,0)";
+  }
+
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(paintParallax);
+  }, { passive: true });
 })();
