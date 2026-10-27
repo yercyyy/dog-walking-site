@@ -1,4 +1,4 @@
-# NDW - Florida
+# NDW Florida
 
 A one-page website for Neighborhood Dog Walkers in Melbourne, Florida. It is plain HTML, CSS, and a little JavaScript. There is no build step.
 

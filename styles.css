@@ -1,4 +1,4 @@
-/* NDW - Florida
+/* NDW Florida
    Change the colors in :root if you want a different look.
    You do not need to understand the rest of this file to do that. */
 
@@ -60,7 +60,7 @@
   --teal-deep: #0f3d39;
   --coral: #e07a5f;
   --gold: #c4922e;
-  --palm: #1f7a4d;
+  --ocean: #0e6e7a;
   --radius: 0;
   --line: rgba(20, 63, 59, 0.14);
   --shadow: 0 18px 40px rgba(20, 63, 59, 0.08);
@@ -245,9 +245,9 @@ code {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: var(--palm);
+  background: var(--ocean);
   color: #fff;
-  border-bottom: 1px solid #18643e;
+  border-bottom: 1px solid #0a5560;
 }
 
 .header-inner {
@@ -282,7 +282,7 @@ code {
 
 .logo-mark svg circle,
 .logo-mark svg ellipse {
-  fill: var(--palm);
+  fill: var(--ocean);
 }
 
 .logo-text {
@@ -1108,8 +1108,8 @@ textarea[aria-invalid="true"] {
     align-items: stretch;
     gap: 4px;
     padding: 8px 16px 16px;
-    background: var(--palm);
-    border-bottom: 1px solid #18643e;
+    background: var(--ocean);
+    border-bottom: 1px solid #0a5560;
     max-height: calc(100vh - 72px);
     overflow: auto;
   }
