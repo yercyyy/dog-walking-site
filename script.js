@@ -1,6 +1,36 @@
-// Mobile menu, photo viewer, and the contact form.
-// The form opens the visitor's email app. It does not send mail by itself.
-const CONTACT_EMAIL = "njahshaun@gmail.com";
+// Mobile menu, photo viewer, price-card call sheet, and the contact form.
+// Phone and email come from #site-phone and #site-email in index.html.
+// The Formspree id is the ndw-formspree-id meta tag. Leave it empty until
+// a real form exists. Empty uses the email-app fallback.
+
+function readContact() {
+  var phoneEl = document.getElementById("site-phone");
+  var emailEl = document.getElementById("site-email");
+  var phoneText = phoneEl ? phoneEl.querySelector(".contact-value") : null;
+  var emailHref = emailEl ? (emailEl.getAttribute("href") || "") : "";
+  var email = "";
+  if (emailHref.indexOf("mailto:") === 0) {
+    email = emailHref.slice("mailto:".length).split("?")[0];
+  }
+  return {
+    phoneDisplay: phoneText ? phoneText.textContent.trim() : "",
+    phoneHref: phoneEl ? (phoneEl.getAttribute("href") || "") : "",
+    email: email
+  };
+}
+
+function formspreeEndpoint() {
+  var meta = document.querySelector('meta[name="ndw-formspree-id"]');
+  var raw = meta ? (meta.getAttribute("content") || "").trim() : "";
+  if (!raw) return "";
+  var fromUrl = raw.match(/formspree\.io\/f\/([A-Za-z0-9]+)/i);
+  if (fromUrl) return "https://formspree.io/f/" + fromUrl[1];
+  if (/^[A-Za-z0-9]+$/.test(raw)) return "https://formspree.io/f/" + raw;
+  if (window.console && console.warn) {
+    console.warn("ndw-formspree-id is set but is not a Formspree form id. Using the email-app fallback.");
+  }
+  return "";
+}
 
 (function () {
   const header = document.querySelector(".site-header");
@@ -55,9 +85,10 @@ const CONTACT_EMAIL = "njahshaun@gmail.com";
     document.querySelectorAll(".gallery-open").forEach(function (button) {
       button.addEventListener("click", function () {
         const img = button.querySelector("img");
-        dialogImg.src = img.getAttribute("src");
-        dialogImg.alt = img.alt;
-        dialogTitle.textContent = button.getAttribute("data-caption") || img.alt;
+        if (!img) return;
+        dialogImg.src = img.getAttribute("data-full") || img.currentSrc || img.getAttribute("src");
+        dialogImg.alt = img.alt || "";
+        dialogTitle.textContent = img.alt || "Photo";
         if (typeof dialog.showModal === "function" && !dialog.open) {
           dialog.showModal();
         }
@@ -77,6 +108,14 @@ const CONTACT_EMAIL = "njahshaun@gmail.com";
 
   const callSheet = document.querySelector("#call-sheet");
   const callCancel = document.querySelector("#call-sheet-cancel");
+  const contact = readContact();
+
+  if (callSheet) {
+    const numberEl = callSheet.querySelector(".call-sheet-number");
+    const callAnchor = callSheet.querySelector(".call-sheet-call");
+    if (numberEl && contact.phoneDisplay) numberEl.textContent = contact.phoneDisplay;
+    if (callAnchor && contact.phoneHref) callAnchor.setAttribute("href", contact.phoneHref);
+  }
 
   if (callSheet && typeof callSheet.showModal === "function") {
     let opener = null;
@@ -86,9 +125,9 @@ const CONTACT_EMAIL = "njahshaun@gmail.com";
       return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     }
 
-    function openCallSheet(row) {
+    function openCallSheet(source) {
       if (callSheet.open || closing) return;
-      opener = row;
+      opener = source;
       callSheet.showModal();
       const callLink = callSheet.querySelector(".call-sheet-call");
       if (motionReduced()) {
@@ -138,24 +177,9 @@ const CONTACT_EMAIL = "njahshaun@gmail.com";
       }, 450);
     }
 
-    document.querySelectorAll("#services .price-row").forEach(function (row) {
-      const nameLink = row.querySelector("h3 a");
-      row.setAttribute("role", "button");
-      row.setAttribute("tabindex", "0");
-      row.setAttribute("aria-haspopup", "dialog");
-      if (nameLink) nameLink.setAttribute("aria-haspopup", "dialog");
-      row.addEventListener("click", function (event) {
-        const link = event.target.closest("a");
-        if (link && row.contains(link)) event.preventDefault();
-        openCallSheet(row);
-      });
-      row.addEventListener("keydown", function (event) {
-        if (event.key !== "Enter" && event.key !== " ") return;
-        const link = event.target.closest ? event.target.closest("a") : null;
-        const onLink = link && row.contains(link);
-        if (event.target !== row && !onLink) return;
-        event.preventDefault();
-        openCallSheet(row);
+    document.querySelectorAll("#services .price-contact").forEach(function (button) {
+      button.addEventListener("click", function () {
+        openCallSheet(button);
       });
     });
 
@@ -192,6 +216,19 @@ const CONTACT_EMAIL = "njahshaun@gmail.com";
   const form = document.querySelector("#contact-form");
   const status = document.querySelector("#form-status");
   if (!form || !status) return;
+
+  const endpoint = formspreeEndpoint();
+  const hint = document.getElementById("form-hint");
+  const submitButton = document.getElementById("contact-submit");
+  if (endpoint) {
+    form.action = endpoint;
+    form.method = "post";
+    form.removeAttribute("enctype");
+    if (hint) {
+      hint.textContent = "This sends your note to us. You can also call or email using the phone and email above.";
+    }
+    if (submitButton) submitButton.textContent = "Send this message";
+  }
 
   const fields = [
     {
@@ -239,8 +276,32 @@ const CONTACT_EMAIL = "njahshaun@gmail.com";
     input.addEventListener("change", function () { clearError(input); });
   });
 
+  function mailtoUrl(name, email, phone, dog, service, message) {
+    const body = [
+      "Name: " + name,
+      "Email: " + email,
+      "Phone: " + (phone || "(not given)"),
+      "Dog: " + (dog || "(not given)"),
+      "Service: " + service,
+      "",
+      message
+    ].join("\n");
+    return "mailto:" + contact.email + "?subject=" + encodeURIComponent("Dog walk request from " + name) + "&body=" + encodeURIComponent(body);
+  }
+
+  function reachLine() {
+    const bits = [];
+    if (contact.phoneDisplay) bits.push("call " + contact.phoneDisplay);
+    if (contact.email) bits.push("email " + contact.email);
+    if (!bits.length) return "";
+    return " You can also " + bits.join(" or ") + ".";
+  }
+
+  let sending = false;
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
+    if (sending) return;
     let firstInvalid = null;
 
     fields.forEach(function (field) {
@@ -267,19 +328,54 @@ const CONTACT_EMAIL = "njahshaun@gmail.com";
     const dog = document.getElementById("dog").value.trim();
     const service = document.getElementById("service").value;
     const message = document.getElementById("message").value.trim();
-    const body = [
-      "Name: " + name,
-      "Email: " + email,
-      "Phone: " + (phone || "(not given)"),
-      "Dog: " + (dog || "(not given)"),
-      "Service: " + service,
-      "",
-      message
-    ].join("\n");
 
+    function openMailto() {
+      if (!contact.email) return;
+      window.location.href = mailtoUrl(name, email, phone, dog, service, message);
+    }
+
+    if (!endpoint) {
+      status.className = "form-status is-visible";
+      status.textContent = "Opening your email app with this message." + reachLine();
+      openMailto();
+      return;
+    }
+
+    sending = true;
+    if (submitButton) submitButton.disabled = true;
     status.className = "form-status is-visible";
-    status.textContent = "Opening your email app with this message to " + CONTACT_EMAIL + ".";
-    window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Dog walk request from " + name) + "&body=" + encodeURIComponent(body);
+    status.textContent = "Sending…";
+
+    fetch(endpoint, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        phone: phone,
+        dog: dog,
+        service: service,
+        message: message,
+        _subject: "Dog walk request from " + name
+      })
+    }).then(function (response) {
+      if (!response.ok) throw new Error("Form request failed");
+      return response.json().catch(function () { return {}; });
+    }).then(function () {
+      form.reset();
+      status.className = "form-status is-visible";
+      status.textContent = "Thanks. Your message was sent." + reachLine();
+    }).catch(function () {
+      openMailto();
+      status.className = "form-status is-visible is-error";
+      status.textContent = "The form could not send from this browser, so your email app should open." + reachLine();
+    }).then(function () {
+      sending = false;
+      if (submitButton) submitButton.disabled = false;
+    });
   });
 })();
 
