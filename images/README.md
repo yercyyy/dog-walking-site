@@ -1,6 +1,7 @@
 # Photos and videos
 
-- `placeholder-hero.svg` is the drawing in the hero until a real photo is used there.
 - `favicon.svg` is the small icon on the browser tab.
+- The JPG files are walk and visit photos, resized to about 1200 pixels wide.
+- The MP4 files are short clips. In `index.html` each video uses `muted`, `playsinline`, and `controls`.
 
-Put walk photos and short videos in this folder, then point the gallery in `index.html` at those files. Use a short `alt` description for each photo. A video tag should include `muted`, `playsinline`, and `controls`.
+The hero photo is `walk-on-the-path.jpg`. To swap it, change the image in the hero in `index.html` and keep a short `alt` description.
