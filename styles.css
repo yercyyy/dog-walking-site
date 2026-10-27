@@ -87,14 +87,7 @@ body {
   font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--ink);
-  background-color: #3f9a45;
-  background-image:
-    radial-gradient(circle at 76% 12%, rgba(255, 224, 138, 0.95) 0 64px, rgba(255, 224, 138, 0) 130px),
-    url("images/nature.svg");
-  background-repeat: no-repeat, no-repeat;
-  background-position: center top, center center;
-  background-size: auto, cover;
-  background-attachment: fixed;
+  background: #f4e7cf;
 }
 
 img {
@@ -250,7 +243,7 @@ code {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(232, 247, 236, 0.88);
+  background: rgba(247, 243, 234, 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
@@ -373,27 +366,24 @@ code {
 .hero {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(255, 253, 249, 0.18), rgba(255, 253, 249, 0.28));
+  padding-bottom: 64px;
+  background:
+    url("images/seagull.svg") 18% 16% / 78px 28px no-repeat,
+    url("images/palm-shore.svg") center bottom / min(100%, 980px) auto no-repeat,
+    radial-gradient(circle at 74% 24%, #ffe7a8 0 36px, rgba(255, 196, 120, 0.55) 38px, rgba(255, 196, 120, 0) 120px),
+    linear-gradient(180deg, #f4a261 0%, #f8d7a2 22%, #f7f1e4 46%, #8ecae6 72%, #1a7f8c 100%);
 }
 
-.hero::before,
 .hero::after {
   content: "";
   position: absolute;
-  width: 250px;
-  height: 360px;
-  bottom: -8px;
-  background: url("images/tree-cluster.svg") bottom / contain no-repeat;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 46px;
+  background: url("images/ocean-wave.svg") center / 100% 100% no-repeat;
   pointer-events: none;
-}
-
-.hero::before {
-  left: -16px;
-}
-
-.hero::after {
-  right: -24px;
-  transform: scaleX(-1);
+  z-index: 2;
 }
 
 .hero-inner {
@@ -499,50 +489,69 @@ code {
   padding: 56px 0;
 }
 
-.band-paper {
-  background: linear-gradient(180deg, rgba(255, 253, 249, 0.78), rgba(232, 247, 220, 0.72));
+.band-paper,
+#about {
+  background:
+    url("images/palm-shore.svg") center bottom / min(100%, 920px) auto no-repeat,
+    linear-gradient(180deg, #d9f3f6 0%, #f7f4ea 58%, #f3e4c4 100%);
 }
 
-#services,
+#services {
+  background-color: #f6e6c4;
+  background-image:
+    url("images/paw-pattern.svg"),
+    radial-gradient(circle, rgba(168, 122, 62, 0.22) 0.8px, transparent 1px);
+  background-size: 180px 180px, 16px 16px;
+}
+
 #area {
-  background-color: rgba(255, 253, 249, 0.55);
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255, 244, 214, 0.7), transparent 28%),
+    linear-gradient(180deg, #f6e6c4 0%, #8ecae6 42%, #1a7f8c 100%);
+}
+
+#gallery {
+  overflow: hidden;
+  background:
+    url("images/shell.svg") right 28px top 24px / 54px 40px no-repeat,
+    radial-gradient(circle at 18% 30%, rgba(255, 255, 255, 0.55), transparent 22%),
+    radial-gradient(circle at 78% 70%, rgba(255, 255, 255, 0.4), transparent 18%),
+    linear-gradient(180deg, #e5f7fb 0%, #b7e4ef 48%, #8fd0cf 100%);
 }
 
 #contact {
-  background-color: rgba(255, 253, 249, 0.72);
+  background:
+    url("images/palm-shore.svg") right bottom / 280px auto no-repeat,
+    radial-gradient(circle at 82% 16%, #ffe7a8 0 34px, rgba(255, 168, 96, 0.45) 36px, transparent 130px),
+    linear-gradient(165deg, #fff1d2 0%, #ffd0a4 46%, #f4a06a 78%, #e07a5f 100%);
+}
+
+.hero,
+#about,
+#services,
+#area,
+#gallery {
+  padding-bottom: 78px;
 }
 
 #about::after,
+#services::after,
+#area::after,
 #gallery::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
   bottom: -1px;
-  height: 36px;
+  height: 42px;
+  background: url("images/ocean-wave.svg") center / 100% 100% no-repeat;
   pointer-events: none;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  -webkit-mask: url("images/section-wave.svg") center / 100% 100% no-repeat;
-  mask: url("images/section-wave.svg") center / 100% 100% no-repeat;
+  z-index: 2;
 }
 
-#about {
-  padding-bottom: 76px;
-}
-
-#about::after {
-  background-color: #5ea84e;
-}
-
-#gallery {
-  padding-bottom: 76px;
-  overflow: hidden;
-}
-
-#gallery::after {
-  background-color: #4f9a45;
+.section > .wrap {
+  position: relative;
+  z-index: 1;
 }
 
 .section-head {
@@ -906,14 +915,7 @@ textarea[aria-invalid="true"] {
 }
 
 .site-footer::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -22px;
-  height: 28px;
-  background: url("images/bushes.svg") left bottom / 180px 28px repeat-x;
-  pointer-events: none;
+  content: none;
 }
 
 .footer-inner {
@@ -1345,32 +1347,34 @@ textarea[aria-invalid="true"] {
 }
 
 @media (min-width: 800px) {
+  .hero,
   #about,
+  #services,
+  #area,
   #gallery {
-    padding-bottom: 112px;
+    padding-bottom: 96px;
   }
 
+  .hero::after,
   #about::after,
+  #services::after,
+  #area::after,
   #gallery::after {
-    height: 48px;
+    height: 52px;
   }
 }
 
 @media (max-width: 800px) {
-  .hero::before,
-  .hero::after {
-    width: 108px;
-    height: 160px;
-    top: 92px;
-    bottom: auto;
+  .hero {
+    background-size: 64px 22px, min(140%, 640px) auto, auto, auto;
   }
 
-  .hero::before {
-    left: -46px;
+  #about {
+    background-size: min(150%, 680px) auto, auto;
   }
 
-  .hero::after {
-    right: -52px;
+  #contact {
+    background-size: 180px auto, auto, auto;
   }
 }
 
