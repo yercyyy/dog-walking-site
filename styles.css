@@ -543,6 +543,7 @@ code {
 
 #gallery {
   padding-bottom: 76px;
+  overflow: hidden;
 }
 
 #gallery::before {
