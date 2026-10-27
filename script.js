@@ -1,0 +1,167 @@
+// Mobile menu, photo viewer, and the contact form check.
+// You can ignore this file until you want the form to do more.
+//
+// PLACEHOLDER email. The form does not send mail. It only mentions this
+// address in the note visitors see after they press the button.
+// Change it to your real email if you uncomment the mailto lines below.
+const CONTACT_EMAIL = "you@example.com";
+
+(function () {
+  const header = document.querySelector(".site-header");
+  const toggle = document.querySelector(".nav-toggle");
+  const label = toggle ? toggle.querySelector(".nav-toggle-label") : null;
+
+  function closeMenu() {
+    if (!header || !toggle) return;
+    header.classList.remove("is-open");
+    document.body.classList.remove("nav-lock");
+    toggle.setAttribute("aria-expanded", "false");
+    if (label) label.textContent = "Open menu";
+  }
+
+  function openMenu() {
+    header.classList.add("is-open");
+    document.body.classList.add("nav-lock");
+    toggle.setAttribute("aria-expanded", "true");
+    if (label) label.textContent = "Close menu";
+  }
+
+  if (header && toggle) {
+    toggle.addEventListener("click", function () {
+      if (header.classList.contains("is-open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    header.addEventListener("click", function (event) {
+      if (event.target.closest("a")) closeMenu();
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!header.classList.contains("is-open")) return;
+      if (header.contains(event.target)) return;
+      closeMenu();
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeMenu();
+    });
+  }
+
+  const dialog = document.querySelector("#photo-dialog");
+  const dialogImg = document.querySelector("#photo-dialog-img");
+  const dialogTitle = document.querySelector("#photo-dialog-title");
+  const dialogClose = document.querySelector("#photo-dialog-close");
+
+  if (dialog && dialogImg && dialogTitle) {
+    document.querySelectorAll(".gallery-open").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const img = button.querySelector("img");
+        dialogImg.src = img.getAttribute("src");
+        dialogImg.alt = img.alt;
+        dialogTitle.textContent = button.getAttribute("data-caption") || img.alt;
+        if (typeof dialog.showModal === "function" && !dialog.open) {
+          dialog.showModal();
+        }
+      });
+    });
+
+    if (dialogClose) {
+      dialogClose.addEventListener("click", function () {
+        dialog.close();
+      });
+    }
+
+    dialog.addEventListener("click", function (event) {
+      if (event.target === dialog) dialog.close();
+    });
+  }
+
+  const form = document.querySelector("#contact-form");
+  const status = document.querySelector("#form-status");
+  if (!form || !status) return;
+
+  const fields = [
+    {
+      id: "name",
+      message: "Please add your name.",
+      check: function (value) { return value.trim() !== ""; }
+    },
+    {
+      id: "email",
+      message: "Please add a valid email address.",
+      check: function (value) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()); }
+    },
+    {
+      id: "service",
+      message: "Please choose a service.",
+      check: function (value) { return value.trim() !== ""; }
+    },
+    {
+      id: "message",
+      message: "Please write a short message (at least 10 characters).",
+      check: function (value) { return value.trim().length >= 10; }
+    }
+  ];
+
+  function showError(input, message) {
+    const error = document.getElementById(input.id + "-error");
+    input.setAttribute("aria-invalid", "true");
+    if (!error) return;
+    error.hidden = false;
+    error.textContent = message;
+  }
+
+  function clearError(input) {
+    const error = document.getElementById(input.id + "-error");
+    input.removeAttribute("aria-invalid");
+    if (!error) return;
+    error.hidden = true;
+    error.textContent = "";
+  }
+
+  fields.forEach(function (field) {
+    const input = document.getElementById(field.id);
+    if (!input) return;
+    input.addEventListener("input", function () { clearError(input); });
+    input.addEventListener("change", function () { clearError(input); });
+  });
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    let firstInvalid = null;
+
+    fields.forEach(function (field) {
+      const input = document.getElementById(field.id);
+      const ok = field.check(input.value);
+      if (!ok) {
+        showError(input, field.message);
+        if (!firstInvalid) firstInvalid = input;
+      } else {
+        clearError(input);
+      }
+    });
+
+    if (firstInvalid) {
+      status.className = "form-status is-visible is-error";
+      status.textContent = "Please fix the highlighted fields. Nothing was sent.";
+      firstInvalid.focus();
+      return;
+    }
+
+    const name = document.getElementById("name").value.trim();
+    status.className = "form-status is-visible";
+    status.textContent = "Thanks, " + name + ". This form does not send email yet, so nothing went to " + CONTACT_EMAIL + ". Add your real email in script.js and index.html when you want messages.";
+
+    // To open the visitor's email app instead, delete the status lines above
+    // and uncomment the lines below. Set CONTACT_EMAIL at the top of this
+    // file to your real address first.
+    //
+    // const service = document.getElementById("service").value;
+    // const message = document.getElementById("message").value.trim();
+    // const body = "Name: " + name + "\nService: " + service + "\n\n" + message;
+    // window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Dog walk request") + "&body=" + encodeURIComponent(body);
+  });
+})();
