@@ -168,3 +168,59 @@ const CONTACT_EMAIL = "njahshaun@gmail.com";
     window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Dog walk request from " + name) + "&body=" + encodeURIComponent(body);
   });
 })();
+
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var nodes = document.querySelectorAll(
+    ".section-head, .about-copy, .about-card, .price-list, .area-panel, .gallery-card, .contact-card, .form-card, .contact-layout > div:first-child"
+  );
+
+  if (!reduce) {
+    var view = window.innerHeight * 0.92;
+    nodes.forEach(function (el, index) {
+      var top = el.getBoundingClientRect().top;
+      if (top < view) {
+        el.classList.add("reveal", "is-in");
+        return;
+      }
+      el.style.setProperty("--reveal-delay", (index % 3) * 70 + "ms");
+      el.classList.add("reveal");
+      el.addEventListener("focusin", function () {
+        el.classList.add("is-in");
+      });
+    });
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-in");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px 8% 0px" });
+
+      nodes.forEach(function (el) {
+        if (!el.classList.contains("is-in")) observer.observe(el);
+      });
+    } else {
+      nodes.forEach(function (el) { el.classList.add("is-in"); });
+    }
+  }
+
+  var frame = document.querySelector(".hero-frame");
+  var allowParallax = frame && window.matchMedia("(min-width: 900px)").matches && !reduce;
+  if (!allowParallax) return;
+
+  var ticking = false;
+  function paintParallax() {
+    ticking = false;
+    var shift = Math.min(window.scrollY, 640) * 0.05;
+    frame.style.transform = "translate3d(0," + shift.toFixed(1) + "px,0)";
+  }
+
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(paintParallax);
+  }, { passive: true });
+})();
