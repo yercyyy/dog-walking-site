@@ -1043,9 +1043,14 @@ textarea[aria-invalid="true"] {
 .price-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 7.5rem;
-  gap: 8px 20px;
-  align-items: center;
-  padding: 20px 24px;
+  grid-template-areas:
+    "name rate"
+    "desc rate"
+    "notes notes";
+  column-gap: 24px;
+  row-gap: 4px;
+  align-items: start;
+  padding: 22px 28px;
   border-top: 1px solid var(--line);
 }
 
@@ -1054,23 +1059,31 @@ textarea[aria-invalid="true"] {
 }
 
 .price-row h3 {
-  margin: 0 0 4px;
+  grid-area: name;
+  margin: 0;
   font-size: 1.45rem;
   font-weight: 700;
   color: var(--pine);
 }
 
-.price-row p {
+.price-for {
+  font-weight: 500;
+}
+
+.price-desc {
+  grid-area: desc;
   margin: 0;
   color: var(--ink-soft);
 }
 
 .rate {
+  grid-area: rate;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: center;
-  margin: 0;
+  align-self: start;
+  justify-content: flex-start;
+  margin: 2px 0 0;
   text-align: right;
   line-height: 1.05;
   font-variant-numeric: tabular-nums;
@@ -1091,6 +1104,7 @@ textarea[aria-invalid="true"] {
 }
 
 .rate-notes {
+  grid-area: notes;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
@@ -1139,9 +1153,9 @@ textarea[aria-invalid="true"] {
   flex-direction: column;
   justify-content: center;
   gap: 4px;
-  min-height: 92px;
-  padding: 16px 18px;
-  border-radius: 20px;
+  min-height: 96px;
+  padding: 18px 22px;
+  border-radius: 28px;
   background: var(--paper);
   border: 1.5px solid rgba(20, 63, 59, 0.14);
   box-shadow: var(--shadow);
@@ -1217,13 +1231,35 @@ textarea[aria-invalid="true"] {
 @media (max-width: 560px) {
   .price-row {
     grid-template-columns: minmax(0, 1fr) 5.6rem;
-    padding: 16px;
+    grid-template-areas:
+      "name rate"
+      "desc desc"
+      "notes notes";
+    column-gap: 12px;
+    padding: 18px 16px;
   }
 
   .rate strong {
     font-size: 1.55rem;
   }
 
+  .price-row h3 {
+    font-size: 1.28rem;
+  }
+
+  .price-for {
+    display: block;
+    margin-top: 2px;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+}
+
+@media (max-width: 480px) {
   .rate-notes {
     grid-template-columns: 1fr;
   }
