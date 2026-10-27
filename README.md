@@ -2,7 +2,7 @@
 
 A one-page website for Neighborhood Dog Walkers in Melbourne, Florida. It is plain HTML, CSS, and a little JavaScript. There is no build step.
 
-Open `index.html` in a web browser to see the site. The live site is [https://yercyyy.github.io/dog-walking-site/](https://yercyyy.github.io/dog-walking-site/). A change shows up there after it is merged into `main`.
+Open `index.html` in a web browser to see the site. The live site is [https://ndwflorida.com](https://ndwflorida.com). A change shows up there after it is merged into `main`.
 
 ## What each file does
 
@@ -12,6 +12,7 @@ Open `index.html` in a web browser to see the site. The live site is [https://ye
 - `images/` — photos, short videos, and the browser icon. See `images/README.md`.
 - `fonts/` — the Fraunces and Nunito typefaces. You can ignore this folder.
 - `.nojekyll` — an empty file. It tells GitHub Pages to publish every file as-is. Leave it there.
+- `CNAME` — one line, `ndwflorida.com`. It tells GitHub Pages to serve this site on that domain.
 - `README.md` — this guide.
 
 ## Change a price or a sentence
@@ -30,6 +31,6 @@ Videos use a `<video>` tag with `muted`, `playsinline`, and `controls`.
 
 This repository already publishes the `main` branch from the folder `/` (root). After a pull request is merged, wait a minute and reload:
 
-https://yercyyy.github.io/dog-walking-site/
+https://ndwflorida.com
 
 If the Pages source was changed, set it back to **Deploy from a branch**, branch **main**, folder **/ (root)**.
