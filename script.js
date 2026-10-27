@@ -75,6 +75,54 @@ const CONTACT_EMAIL = "njahshaun@gmail.com";
     });
   }
 
+  const contactDialog = document.querySelector("#contact-dialog");
+  const contactTitle = document.querySelector("#contact-dialog-title");
+  const contactClose = document.querySelector("#contact-dialog-close");
+
+  if (contactDialog && contactTitle) {
+    let opener = null;
+
+    function openContact(row) {
+      const name = row.querySelector("h3");
+      contactTitle.textContent = name ? name.textContent.replace(/\s+/g, " ").trim() : "";
+      opener = row;
+      if (typeof contactDialog.showModal === "function" && !contactDialog.open) {
+        contactDialog.showModal();
+        const first = contactDialog.querySelector(".contact-dialog-option");
+        if (first) first.focus();
+      }
+    }
+
+    document.querySelectorAll("#services .price-row").forEach(function (row) {
+      row.setAttribute("role", "button");
+      row.setAttribute("tabindex", "0");
+      row.setAttribute("aria-haspopup", "dialog");
+      row.addEventListener("click", function () { openContact(row); });
+      row.addEventListener("keydown", function (event) {
+        if (event.target !== row) return;
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openContact(row);
+        }
+      });
+    });
+
+    if (contactClose) {
+      contactClose.addEventListener("click", function () {
+        contactDialog.close();
+      });
+    }
+
+    contactDialog.addEventListener("click", function (event) {
+      if (event.target === contactDialog) contactDialog.close();
+    });
+
+    contactDialog.addEventListener("close", function () {
+      if (opener) opener.focus();
+      opener = null;
+    });
+  }
+
   const form = document.querySelector("#contact-form");
   const status = document.querySelector("#form-status");
   if (!form || !status) return;

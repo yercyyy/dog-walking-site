@@ -1653,6 +1653,112 @@ textarea[aria-invalid="true"] {
   box-shadow: 0 0 0 6px #102e2b;
 }
 
+/* Contact popup opened from the price cards */
+.price-list .price-row {
+  cursor: pointer;
+}
+
+.price-list .price-row:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -6px;
+}
+
+@media (hover: hover) {
+  .price-list .price-row {
+    transition: background-color 0.2s ease;
+  }
+
+  .price-list .price-row:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+#contact-dialog {
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: var(--sea-ink);
+  width: min(440px, calc(100vw - 24px));
+  max-height: calc(100vh - 24px);
+}
+
+#contact-dialog::backdrop {
+  background: rgba(15, 32, 29, 0.72);
+}
+
+.contact-dialog-card {
+  background: rgba(5, 22, 32, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 28px;
+  padding: 16px;
+  max-height: calc(100vh - 24px);
+  overflow: auto;
+}
+
+.contact-dialog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 6px 12px;
+}
+
+.contact-dialog-head h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+#contact-dialog .dialog-close {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+#contact-dialog .dialog-close:hover {
+  border-color: #ffe7c2;
+}
+
+.contact-dialog-options {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-dialog-option {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-height: 72px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contact-dialog-option .contact-kicker {
+  color: var(--sea-gold);
+}
+
+.contact-dialog-option .contact-value {
+  color: #fff;
+  font-weight: 800;
+}
+
+.contact-dialog-option:hover {
+  border-color: #ffe7c2;
+}
+
+#contact-dialog :focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
 @media (max-width: 800px) {
   .hero {
     background-position: right 10px top 12px, center bottom, center, center;
