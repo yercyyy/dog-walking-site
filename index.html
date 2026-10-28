@@ -5,8 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NDW Florida | Dog walking in Melbourne</title>
   <meta name="description" content="NDW Florida walks dogs in Melbourne, Florida. 30-minute walks, 1-hour walks, group walks, pet sitting for dogs and cats, and dog bathing.">
-  <meta name="theme-color" content="#143F3B">
+  <!-- Matches the header bar (ocean), not the footer pine. -->
+  <meta name="theme-color" content="#0e6e7a">
+  <link rel="canonical" href="https://ndwflorida.com/">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NDW Florida">
+  <meta property="og:title" content="NDW Florida | Dog walking in Melbourne">
+  <meta property="og:description" content="NDW Florida walks dogs in Melbourne, Florida. 30-minute walks, 1-hour walks, group walks, pet sitting for dogs and cats, and dog bathing.">
+  <meta property="og:url" content="https://ndwflorida.com/">
+  <meta property="og:image" content="https://ndwflorida.com/images/walk-on-the-path.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1600">
+  <meta property="og:image:alt" content="A fluffy white dog on a leash stands on a paved path outdoors.">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NDW Florida | Dog walking in Melbourne">
+  <meta name="twitter:description" content="NDW Florida walks dogs in Melbourne, Florida. 30-minute walks, 1-hour walks, group walks, pet sitting for dogs and cats, and dog bathing.">
+  <meta name="twitter:image" content="https://ndwflorida.com/images/walk-on-the-path.jpg">
+  <meta name="twitter:image:alt" content="A fluffy white dog on a leash stands on a paved path outdoors.">
+  <!--
+    Formspree form id.
+    Create a form at https://formspree.io, then paste ONLY the id here
+    (the characters after https://formspree.io/f/).
+    Leave this empty until you have a real id. Empty keeps the email-app
+    fallback, and the phone number and email stay on the page.
+    Do not invent an id.
+  -->
+  <meta name="ndw-formspree-id" content="">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "NDW Florida",
+    "alternateName": "Neighborhood Dog Walkers",
+    "url": "https://ndwflorida.com/",
+    "telephone": "+1-929-782-5530",
+    "email": "njahshaun@gmail.com",
+    "image": "https://ndwflorida.com/images/walk-on-the-path.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Melbourne",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "areaServed": "Melbourne, Florida"
+  }
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -59,7 +104,10 @@
           </ul>
         </div>
         <figure class="hero-frame">
-          <img id="hero-photo" src="images/walk-on-the-path.jpg" width="1200" height="1600" alt="A light-colored dog on a leash, standing on a paved path and looking toward the camera.">
+          <picture>
+            <source type="image/webp" srcset="images/walk-on-the-path-720.webp 720w, images/walk-on-the-path.webp 1200w" sizes="(min-width: 921px) 540px, 96vw">
+            <img id="hero-photo" src="images/walk-on-the-path.jpg" width="1200" height="1600" alt="A fluffy white dog on a leash stands on a paved path outdoors." fetchpriority="high">
+          </picture>
         </figure>
       </div>
     </section>
@@ -98,11 +146,13 @@
             <h3>30-minute walk</h3>
             <p class="rate"><strong>$25</strong></p>
             <p class="price-desc">A leashed walk for one dog.</p>
+            <button class="price-contact" type="button" aria-haspopup="dialog" aria-controls="call-sheet" aria-label="Contact us about the 30-minute walk">Contact us</button>
           </article>
           <article class="price-row">
             <h3>1-hour walk</h3>
             <p class="rate"><strong>$45</strong></p>
             <p class="price-desc">A longer walk for one dog.</p>
+            <button class="price-contact" type="button" aria-haspopup="dialog" aria-controls="call-sheet" aria-label="Contact us about the 1-hour walk">Contact us</button>
           </article>
           <article class="price-row">
             <h3>Group walks</h3>
@@ -113,16 +163,19 @@
               <li><strong>$10</strong><span>per dog to start</span></li>
               <li><strong>Varies</strong><span>by how many dogs</span></li>
             </ul>
+            <button class="price-contact" type="button" aria-haspopup="dialog" aria-controls="call-sheet" aria-label="Contact us about group walks">Contact us</button>
           </article>
           <article class="price-row">
             <h3>Pet sitting <span class="price-for">(dogs and cats)</span></h3>
             <p class="rate"><strong>$15</strong><span>per hour</span></p>
             <p class="price-desc">Time at home with a dog or a cat.</p>
+            <button class="price-contact" type="button" aria-haspopup="dialog" aria-controls="call-sheet" aria-label="Contact us about pet sitting">Contact us</button>
           </article>
           <article class="price-row">
             <h3>Dog bathing</h3>
             <p class="rate"><strong>$20</strong><span>per dog</span></p>
             <p class="price-desc">A bath for one dog.</p>
+            <button class="price-contact" type="button" aria-haspopup="dialog" aria-controls="call-sheet" aria-label="Contact us about dog bathing">Contact us</button>
           </article>
         </div>
       </div>
@@ -160,82 +213,124 @@
         <div class="gallery-grid" id="gallery-grid">
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/walk-on-the-path.jpg" width="1200" height="1600" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/walk-on-the-path-720.webp 720w, images/walk-on-the-path.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/walk-on-the-path.jpg" width="1200" height="1600" alt="A fluffy white dog on a leash stands on a paved path outdoors." data-full="images/walk-on-the-path.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/three-dogs-outside.jpg" width="1200" height="1600" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/three-dogs-outside-720.webp 720w, images/three-dogs-outside.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/three-dogs-outside.jpg" width="1200" height="1600" alt="Three dogs on leashes stand together on pavement: a small black dog, a scruffy gray dog, and a tan dog." data-full="images/three-dogs-outside.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/dogs-in-a-row.jpg" width="1200" height="1600" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/dogs-in-a-row-720.webp 720w, images/dogs-in-a-row.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/dogs-in-a-row.jpg" width="1200" height="1600" alt="Three small fluffy dogs sit side by side on pavement: white, black, and tan." data-full="images/dogs-in-a-row.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/dog-close-up-on-grass.jpg" width="1200" height="1600" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/dog-close-up-on-grass-720.webp 720w, images/dog-close-up-on-grass.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/dog-close-up-on-grass.jpg" width="1200" height="1600" alt="Close-up of a small tan and white dog lying in the grass with its tongue out." data-full="images/dog-close-up-on-grass.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/white-dog-in-the-yard.jpg" width="1200" height="1600" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/white-dog-in-the-yard-720.webp 720w, images/white-dog-in-the-yard.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/white-dog-in-the-yard.jpg" width="1200" height="1600" alt="A small white dog stands on the grass in a fenced yard." data-full="images/white-dog-in-the-yard.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/dog-on-a-red-leash.jpg" width="1200" height="1600" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/dog-on-a-red-leash-720.webp 720w, images/dog-on-a-red-leash.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/dog-on-a-red-leash.jpg" width="1200" height="1600" alt="A small white dog on a red leash walks along a sidewalk." data-full="images/dog-on-a-red-leash.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/dog-in-a-red-hoodie.jpg" width="1200" height="2134" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/dog-in-a-red-hoodie-720.webp 720w, images/dog-in-a-red-hoodie.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/dog-in-a-red-hoodie.jpg" width="1200" height="2134" alt="A small tan dog in a red hoodie stands on a porch." data-full="images/dog-in-a-red-hoodie.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/small-dog-by-the-car.jpg" width="1200" height="2134" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/small-dog-by-the-car-720.webp 720w, images/small-dog-by-the-car.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/small-dog-by-the-car.jpg" width="1200" height="2134" alt="A small tan dog stands beside the open door of a white car." data-full="images/small-dog-by-the-car.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/small-dog-on-a-chair.jpg" width="1200" height="1600" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/small-dog-on-a-chair-720.webp 720w, images/small-dog-on-a-chair.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/small-dog-on-a-chair.jpg" width="1200" height="1600" alt="A small white dog sits on a dark chair indoors." data-full="images/small-dog-on-a-chair.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/small-dog-by-the-door.jpg" width="1200" height="1600" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/small-dog-by-the-door-720.webp 720w, images/small-dog-by-the-door.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/small-dog-by-the-door.jpg" width="1200" height="1600" alt="A small white dog in a pink harness stands by a glass door." data-full="images/small-dog-by-the-door.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/white-dog-on-the-porch.jpg" width="1200" height="1600" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/white-dog-on-the-porch-720.webp 720w, images/white-dog-on-the-porch.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/white-dog-on-the-porch.jpg" width="1200" height="1600" alt="A small white dog lies on a wooden porch next to a chair." data-full="images/white-dog-on-the-porch.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/white-dog-on-the-steps.jpg" width="1200" height="1600" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/white-dog-on-the-steps-720.webp 720w, images/white-dog-on-the-steps.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/white-dog-on-the-steps.jpg" width="1200" height="1600" alt="A small white dog sits on concrete steps by a door." data-full="images/white-dog-on-the-steps.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/tan-dog-close-up.jpg" width="1200" height="1600" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/tan-dog-close-up-720.webp 720w, images/tan-dog-close-up.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/tan-dog-close-up.jpg" width="1200" height="1600" alt="Close-up of a tan dog's face as it looks to the side." data-full="images/tan-dog-close-up.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
             <button class="gallery-open" type="button">
-              <img src="images/dog-riding-in-the-car.jpg" width="1200" height="1600" alt="Dog photo">
+              <picture>
+                <source type="image/webp" srcset="images/dog-riding-in-the-car-720.webp 720w, images/dog-riding-in-the-car.webp 1200w" sizes="(min-width: 921px) 360px, (min-width: 560px) 46vw, 92vw">
+                <img src="images/dog-riding-in-the-car.jpg" width="1200" height="1600" alt="A small light-colored dog looks out of an open car window." data-full="images/dog-riding-in-the-car.webp" loading="lazy" decoding="async">
+              </picture>
             </button>
           </figure>
           <figure class="gallery-card">
-            <video src="images/clip-dog-in-the-car.mp4" muted playsinline controls preload="metadata" aria-label="Dog video"></video>
+            <video src="images/clip-dog-in-the-car.mp4" poster="images/clip-dog-in-the-car-poster.jpg" muted playsinline controls preload="none" width="720" height="1280" aria-label="A small light-colored dog rides in a car and looks out the window."></video>
           </figure>
           <figure class="gallery-card">
-            <video src="images/clip-dog-by-the-door.mp4" muted playsinline controls preload="metadata" aria-label="Dog video"></video>
+            <video src="images/clip-dog-by-the-door.mp4" poster="images/clip-dog-by-the-door-poster.jpg" muted playsinline controls preload="none" width="720" height="1280" aria-label="A small white dog in a pink harness stands by a glass door while someone holds the leash."></video>
           </figure>
           <figure class="gallery-card">
-            <video src="images/clip-two-dogs-outside.mp4" muted playsinline controls preload="metadata" aria-label="Dog video"></video>
+            <video src="images/clip-two-dogs-outside.mp4" poster="images/clip-two-dogs-outside-poster.jpg" muted playsinline controls preload="none" width="1088" height="1920" aria-label="Two dogs on leashes stand outside a house, one black and one tan and white."></video>
           </figure>
         </div>
       </div>
@@ -246,14 +341,21 @@
         <header class="section-head">
           <p class="kicker">Contact</p>
           <h2>Say hello</h2>
-          <p class="lede">Call or email directly, or use the form. The form opens your email app with the message addressed to us.</p>
+          <p class="lede">Call or email directly, or use the form.</p>
         </header>
+        <!--
+          Phone and email live on these two cards. script.js reads them for the
+          call sheet and the form. The same details are repeated in the footer,
+          the no-JavaScript note, this form's mailto action, and the
+          LocalBusiness block in the page head so they still work without
+          JavaScript and for search. Change them together.
+        -->
         <div class="contact-pair">
-          <a class="contact-card" href="tel:+19297825530">
+          <a class="contact-card" id="site-phone" href="tel:+19297825530">
             <span class="contact-kicker">Phone</span>
             <span class="contact-value">929-782-5530</span>
           </a>
-          <a class="contact-card" href="mailto:njahshaun@gmail.com">
+          <a class="contact-card" id="site-email" href="mailto:njahshaun@gmail.com">
             <span class="contact-kicker">Email</span>
             <span class="contact-value">njahshaun@gmail.com</span>
           </a>
@@ -282,7 +384,7 @@
           <div class="form-grid">
             <div class="form-row">
               <label for="visitor-phone">Your phone <span class="optional">(optional)</span></label>
-              <input id="visitor-phone" name="visitor-phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30">
+              <input id="visitor-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30">
             </div>
             <div class="form-row">
               <label for="dog">Dog's name <span class="optional">(optional)</span></label>
@@ -306,11 +408,11 @@
             <textarea id="message" name="message" rows="5" required maxlength="800"></textarea>
             <p class="field-error" id="message-error" hidden></p>
           </div>
-          <p class="form-hint" id="form-hint">This opens your email app with the note addressed to njahshaun@gmail.com.</p>
-          <button class="button button-primary" type="submit">Email this message</button>
+          <p class="form-hint" id="form-hint">This opens your email app. You can also call or email using the phone and email above.</p>
+          <button class="button button-primary" id="contact-submit" type="submit">Email this message</button>
           <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
           <noscript>
-            <p class="owner-note">JavaScript is off, so this form cannot open your email app. Call 929-782-5530 or email njahshaun@gmail.com.</p>
+            <p class="owner-note">JavaScript is off. Call 929-782-5530 or email njahshaun@gmail.com.</p>
           </noscript>
         </form>
         </div>
@@ -336,6 +438,16 @@
         <button class="dialog-close" id="photo-dialog-close" type="button" aria-label="Close">&times;</button>
       </div>
       <img id="photo-dialog-img" alt="">
+    </div>
+  </dialog>
+
+  <dialog id="call-sheet" role="dialog" aria-modal="true" aria-labelledby="call-sheet-title" tabindex="-1">
+    <div class="call-sheet-stack">
+      <div class="call-sheet-group">
+        <p id="call-sheet-title" class="call-sheet-number"></p>
+        <a class="call-sheet-call" href="">Call</a>
+      </div>
+      <button class="call-sheet-cancel" id="call-sheet-cancel" type="button">Cancel</button>
     </div>
   </dialog>
 
