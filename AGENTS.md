@@ -2,13 +2,25 @@
 
 Instructions for any Cursor agent working on this repository. Read this file before you change anything. The owner's short guide is `README.md`. This file is the operating manual.
 
-## Hard rule: do not act on your own
+Updates do not need a separate yes from the owner. What they need is the same review the owner would do. Do not merge to `main` until the Owner-standard review below passes. Merging to `main` is what makes the site live.
 
-Never make a change on your own initiative. Act only when the owner explicitly asks for a specific change, and only within that request.
+## Owner-standard review
 
-No proactive fixes, refactors, cleanups, dependency updates, content updates, or "improvements" unless the owner asked for that exact thing. If you notice a problem, you may mention it. Do not change it until the owner says yes.
+Every change must pass this review before it is merged to `main`. This is how the owner has worked so far.
 
-Every change still goes on a branch and a pull request against `main`. Never push straight to `main`. Nothing merges, and nothing goes live, without the owner's explicit approval.
+- Work on a branch and open a pull request against `main`. Never push commits straight to `main`.
+- Keep the change small and focused.
+- Keep the visual design the same.
+- Never rewrite the owner's wording or copy. If a sentence should change, flag it in the pull request and leave the words as they are.
+- Check the page in a browser at a desktop width and at a phone width (about 390px).
+- No broken links, images, fonts, or other assets. No console errors.
+- Test the contact form (empty submit shows errors and sends nothing; a filled submit follows the Formspree rules below), the price-card call sheet (Contact us opens it, Cancel closes it), the gallery photo popup, and the mobile menu.
+- Keep alt text on every photo and video. Keep the title, description, canonical link, Open Graph and Twitter tags, `theme-color`, LocalBusiness JSON-LD, `robots.txt`, and `sitemap.xml` in sync with the page.
+- Keep images light: WebP plus a JPG fallback, and lazy-load anything below the fold.
+- Write the pull request in short, simple language: what changed, what the owner needs to do, and how you checked it.
+- After the merge, wait about a minute, reload https://ndwflorida.com, and confirm the change is actually live.
+
+Do not delete branches unless the owner asks. Do not merge or delete these remote branches unless the owner asks: `cursor/owner-content-81ff`, `cursor/gallery-no-text-81ff`, `cursor/custom-domain-81ff`.
 
 ## What this site is
 
@@ -73,14 +85,13 @@ Opening `index.html` as a file shows most of the page. Use the local server when
 
 ## Workflow
 
-The hard rule above comes first. Within a request the owner actually made:
-
 - Start from a fresh `origin/main` (`git fetch origin main` first).
 - Do the work on a new branch. Open a pull request against `main`.
-- Never push straight to `main`. Never merge unless the owner explicitly says to merge.
-- The owner confirms before anything goes live. Say that clearly in the pull request.
-- Keep pull request descriptions in plain language: what changed, what the owner must do, and how you checked it.
-- No code changes means no drive-by edits. If the task is docs, do not restyle the site.
+- Never push commits straight to `main`.
+- Merge only after the Owner-standard review passes. That review is the gate. A separate approval message is not required.
+- After the merge, verify https://ndwflorida.com as the review says.
+- Explain the change in the pull request in short, simple language.
+- Keep the change inside the task. Do not restyle the site while editing docs, and do not expand a small fix into a cleanup.
 
 ## Conventions
 
@@ -143,30 +154,20 @@ After a real id is saved and merged:
 
 ## Copy
 
-Never rewrite the owner's wording without asking. Prices, About paragraphs, and service descriptions stay as written. Fixing a typo the owner asked for is fine. "Improving" a sentence is not.
+Never rewrite the owner's wording. Prices, About paragraphs, and service descriptions stay as written. If a sentence should change, flag it in the pull request and leave it.
 
-Open questions. Do not change these until the owner decides:
+Open questions to flag, not to edit:
 
 - About: "the occasional street rat a dog would love to chase."
 - About: "scared or aggressive" dogs.
 - Group walks: "Varies" / "by how many dogs".
 
-## Pre-merge checklist
-
-Before you say a site change is ready:
-
-- Serve the site locally and look at it at a desktop width and at a phone width (about 390px).
-- Click through the menu, a price-card **Contact us** button (call sheet opens and Cancel closes it), a gallery photo (large view opens and closes), and a video poster (the clip is not a blank box).
-- Submit the contact form empty (field errors, nothing sent) and filled (email-app message, or a real send only if an id is set).
-- No broken images, fonts, or other files. No console errors.
-- Phone, email, and city still match in the contact cards, footer, noscript note, mailto action, and JSON-LD.
-- If you touched copy, you did not silently rewrite the owner.
-
 ## Owner preferences
 
 - Answer the owner in short, simple sentences. Skip jargon unless they ask how something works.
-- Do not merge, and do not push to `main`, until they say so.
-- Do not delete or merge these remote branches unless the owner asks. They are not on `main` yet: `cursor/owner-content-81ff`, `cursor/gallery-no-text-81ff`, `cursor/custom-domain-81ff`.
+- The pull request should explain the change the same way: short and plain.
+- Do not delete branches unless the owner asks.
+- Do not merge or delete these remote branches unless the owner asks: `cursor/owner-content-81ff`, `cursor/gallery-no-text-81ff`, `cursor/custom-domain-81ff`.
 
 ## Branches that are not live
 
