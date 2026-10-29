@@ -1187,13 +1187,33 @@ textarea[aria-invalid="true"] {
 
 .gallery-card video {
   display: block;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: center 32%;
+  width: min(100%, calc(min(62vh, 560px) * 9 / 16));
+  width: min(100%, calc(min(62svh, 560px) * 9 / 16));
+  height: auto;
+  max-width: 100%;
+  max-height: min(62vh, 560px);
+  max-height: min(62svh, 560px);
+  margin-inline: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: contain;
+  object-position: center;
   border-radius: 18px;
   background: #143f3b;
   box-shadow: var(--shadow);
+}
+
+.gallery-card video:fullscreen,
+.gallery-card video:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  aspect-ratio: auto;
+  object-fit: contain;
+  border-radius: 0;
+  background: #102e2b;
+  box-shadow: none;
 }
 
 @media (min-width: 640px) {
