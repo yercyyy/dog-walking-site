@@ -469,6 +469,10 @@ a {
   width: 100%;
 }
 
+.gallery-open picture {
+  height: 100%;
+}
+
 .hero-frame img {
   display: block;
   width: 100%;
@@ -701,6 +705,7 @@ h2 {
 .gallery-open {
   display: block;
   width: 100%;
+  height: auto;
   padding: 0;
   border: 0;
   background: #e7f3f0;
@@ -708,12 +713,13 @@ h2 {
   overflow: hidden;
   cursor: pointer;
   box-shadow: var(--shadow);
+  aspect-ratio: 9 / 16;
 }
 
 .gallery-open img {
   display: block;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: 100%;
   object-fit: cover;
   object-position: center 32%;
 }
@@ -1187,15 +1193,12 @@ textarea[aria-invalid="true"] {
 
 .gallery-card video {
   display: block;
-  width: min(100%, calc(min(62vh, 560px) * 9 / 16));
-  width: min(100%, calc(min(62svh, 560px) * 9 / 16));
+  width: 100%;
   height: auto;
   max-width: 100%;
-  max-height: min(62vh, 560px);
-  max-height: min(62svh, 560px);
-  margin-inline: auto;
+  margin: 0;
   aspect-ratio: 9 / 16;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   border-radius: 18px;
   background: #143f3b;
@@ -1264,6 +1267,11 @@ textarea[aria-invalid="true"] {
 @media (max-width: 480px) {
   .rate-notes {
     grid-template-columns: 1fr;
+  }
+
+  /* Phone tiles run edge to edge. The wrap inset is 16px a side. */
+  #gallery .wrap {
+    width: 100%;
   }
 }
 
