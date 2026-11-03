@@ -382,7 +382,7 @@ function formspreeEndpoint() {
 (function () {
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var nodes = document.querySelectorAll(
-    ".section-head, .about-copy, .about-card, .price-list, .area-panel, .gallery-card, .contact-card, .form-card, .contact-layout > div:first-child"
+    ".section-head, .about-copy, .about-card, .price-list, .area-panel, .contact-card, .form-card, .contact-layout > div:first-child"
   );
 
   if (!reduce) {
