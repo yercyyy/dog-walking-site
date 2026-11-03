@@ -1265,6 +1265,16 @@ textarea[aria-invalid="true"] {
   .rate-notes {
     grid-template-columns: 1fr;
   }
+
+  /* Phone clips run edge to edge. The wrap inset is 16px a side.
+     Wider screens keep the shared video size above. */
+  .gallery-card video {
+    width: calc(100% + 32px);
+    max-width: none;
+    max-height: none;
+    margin-inline: -16px;
+    aspect-ratio: auto 9 / 16;
+  }
 }
 
 @media (min-width: 800px) {
