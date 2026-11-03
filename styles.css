@@ -1313,6 +1313,15 @@ textarea[aria-invalid="true"] {
   }
 }
 
+/* Photos and clips stay solid. The fade above would let the teal
+   gallery background show through them until it finished. */
+.gallery-card,
+.gallery-card.reveal,
+.gallery-card.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
 /* Readable sea glass: near-white words on deep ocean panels.
    Artwork stays in the open around the panels. */
 
