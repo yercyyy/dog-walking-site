@@ -1,0 +1,24 @@
+---
+description: How to work on the NDW Florida website. Read AGENTS.md before any change.
+alwaysApply: true
+---
+
+Owner-standard review: updates do not need a separate yes from the owner. Do not merge to `main` until the change would pass the review the owner would do. Full list is in `AGENTS.md`. In short: branch and pull request (never push commits straight to `main`); small and focused; visual design unchanged; never rewrite the owner's copy (flag it instead); check desktop and mobile in a browser; no broken links, assets, or console errors; test the contact form, price-card call sheet, gallery popup, and mobile menu; keep alt text, SEO, Open Graph, JSON-LD, and the sitemap in sync; keep images light (WebP, JPG fallback, lazy loading). The pull request explains the change in short, simple language. After merging, verify https://ndwflorida.com.
+
+Read `AGENTS.md` at the repo root before you change this site. It is the full manual. This rule is the short version.
+
+NDW Florida is the one-page site for Neighborhood Dog Walkers in Melbourne, Florida (https://ndwflorida.com). It is plain HTML, CSS, and JavaScript. No build step.
+
+GitHub Pages publishes `main` from `/`. `CNAME` is `ndwflorida.com`. `.nojekyll` must stay. Merging to `main` is what goes live. After a merge, reload https://ndwflorida.com and confirm the change.
+
+Work on a branch and open a pull request against `main`. Never push commits straight to `main`. Merge only after the Owner-standard review passes.
+
+Keep the visual design. Photos are WebP plus a JPG fallback, lazy-loaded below the fold, each with a real alt or video label. Phone and email live in the contact cards, footer, noscript note, mailto action, and LocalBusiness JSON-LD. Price buttons say "Contact us" and open the call sheet. Keep SEO, Open Graph, JSON-LD, `robots.txt`, and `sitemap.xml` in sync.
+
+The Formspree id is the empty `ndw-formspree-id` meta. Do not invent an id. Empty means the email app, with the phone and email still on the page.
+
+Never rewrite the owner's wording. Flag it in the pull request and leave the words. Still open: "street rat", "scared or aggressive", and group-walk "Varies by how many dogs".
+
+Answer the owner in short, simple sentences. The pull request should do the same.
+
+Do not delete branches unless the owner asks. Do not merge or delete `cursor/owner-content-81ff`, `cursor/gallery-no-text-81ff`, or `cursor/custom-domain-81ff` unless the owner asks.
