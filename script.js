@@ -1,4 +1,4 @@
-// Mobile menu, photo viewer, price-card call sheet, and the contact form.
+// Mobile menu, photo viewer, gallery videos, price-card call sheet, and the contact form.
 // Phone and email come from #site-phone and #site-email in index.html.
 // The Formspree id is the ndw-formspree-id meta tag. Leave it empty until
 // a real form exists. Empty uses the email-app fallback.
@@ -375,6 +375,113 @@ function formspreeEndpoint() {
     }).then(function () {
       sending = false;
       if (submitButton) submitButton.disabled = false;
+    });
+  });
+})();
+
+(function () {
+  var videos = document.querySelectorAll("#gallery-grid video");
+  if (!videos.length) return;
+
+  function isIos() {
+    var ua = navigator.userAgent || "";
+    if (/iPhone|iPad|iPod/i.test(ua)) return true;
+    return navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+  }
+
+  function isVideoFullscreen(video) {
+    var current = document.fullscreenElement || document.webkitFullscreenElement || null;
+    if (current === video) return true;
+    return video.webkitDisplayingFullscreen === true;
+  }
+
+  function startPlayback(video) {
+    try {
+      var pending = video.play();
+      if (pending && typeof pending.catch === "function") {
+        pending.catch(function () {});
+      }
+    } catch (err) {}
+  }
+
+  // iOS Safari can only fullscreen the video element, via webkitEnterFullscreen.
+  // Desktop and Android use requestFullscreen, with the older webkit name as a fallback.
+  // playsinline stays on so starting playback does not fullscreen by itself.
+  function enterFullscreen(video) {
+    if (isIos() && typeof video.webkitEnterFullscreen === "function") {
+      try {
+        video.webkitEnterFullscreen();
+      } catch (err) {}
+      return;
+    }
+    if (typeof video.requestFullscreen === "function") {
+      try {
+        var pending = video.requestFullscreen();
+        if (pending && typeof pending.catch === "function") {
+          pending.catch(function () {});
+        }
+      } catch (err) {}
+      return;
+    }
+    if (typeof video.webkitRequestFullscreen === "function") {
+      try {
+        video.webkitRequestFullscreen();
+      } catch (err) {}
+    }
+  }
+
+  videos.forEach(function (video) {
+    video.playsInline = true;
+    if (!video.hasAttribute("playsinline")) video.setAttribute("playsinline", "");
+    if (!video.hasAttribute("webkit-playsinline")) video.setAttribute("webkit-playsinline", "");
+
+    var skipUntil = 0;
+    var lastOpen = 0;
+    var wasFullscreen = false;
+
+    function rememberExit() {
+      skipUntil = Date.now() + 450;
+      wasFullscreen = false;
+    }
+
+    function syncFullscreen() {
+      var now = isVideoFullscreen(video);
+      if (wasFullscreen && !now) rememberExit();
+      wasFullscreen = now;
+    }
+
+    function openClip() {
+      var now = Date.now();
+      if (now < skipUntil || now - lastOpen < 500) return;
+      if (isVideoFullscreen(video)) return;
+      lastOpen = now;
+      startPlayback(video);
+      enterFullscreen(video);
+      window.setTimeout(function () {
+        if (Date.now() < skipUntil) return;
+        if (video.paused) startPlayback(video);
+      }, 0);
+    }
+
+    function playIfShowingFullscreen() {
+      if (!isVideoFullscreen(video) || !video.paused) return;
+      startPlayback(video);
+    }
+
+    video.addEventListener("click", openClip);
+    video.addEventListener("play", openClip);
+    video.addEventListener("webkitendfullscreen", rememberExit);
+    video.addEventListener("webkitbeginfullscreen", function () {
+      wasFullscreen = true;
+      if (video.paused) startPlayback(video);
+    });
+    document.addEventListener("fullscreenchange", function () {
+      syncFullscreen();
+      playIfShowingFullscreen();
+    });
+    document.addEventListener("webkitfullscreenchange", function () {
+      syncFullscreen();
+      playIfShowingFullscreen();
     });
   });
 })();

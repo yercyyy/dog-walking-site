@@ -1217,7 +1217,24 @@ textarea[aria-invalid="true"] {
   border-radius: 0;
   background: #102e2b;
   box-shadow: none;
+  cursor: auto;
 }
+
+/* Inline controls stay visible, but a tap on them reaches the video so the
+   clip can open full screen. In full screen the controls work as usual. */
+.gallery-card video:not(:-webkit-full-screen) {
+  cursor: pointer;
+}
+
+.gallery-card video:not(:-webkit-full-screen)::-webkit-media-controls { pointer-events: none; }
+.gallery-card video:not(:-webkit-full-screen)::-webkit-media-controls-enclosure { pointer-events: none; }
+.gallery-card video:not(:-webkit-full-screen)::-webkit-media-controls-panel { pointer-events: none; }
+.gallery-card video:not(:-webkit-full-screen)::-webkit-media-controls-overlay-enclosure { pointer-events: none; }
+.gallery-card video:not(:-webkit-full-screen)::-webkit-media-controls-overlay-play-button { pointer-events: none; }
+.gallery-card video:not(:-webkit-full-screen)::-webkit-media-controls-play-button { pointer-events: none; }
+.gallery-card video:not(:-webkit-full-screen)::-webkit-media-controls-timeline { pointer-events: none; }
+.gallery-card video:not(:-webkit-full-screen)::-webkit-media-controls-mute-button { pointer-events: none; }
+.gallery-card video:not(:-webkit-full-screen)::-webkit-media-controls-fullscreen-button { pointer-events: none; }
 
 @media (min-width: 640px) {
   .contact-pair {
