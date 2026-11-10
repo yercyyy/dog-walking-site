@@ -8,7 +8,7 @@ Open `index.html` in a web browser to see the site. The live site is [https://nd
 
 - `index.html` — the page: words, prices, contact details, and the gallery.
 - `styles.css` — colors, spacing, and the phone layout. Color names are at the top.
-- `script.js` — the mobile menu, the larger photo view, the price-card call sheet, and the contact form. It reads the phone and email from the contact cards. It does not keep its own copy.
+- `script.js` — the mobile menu, the larger photo view, the price-card call prompt, and the contact form. The form reads the phone and email from the contact cards. It does not keep its own copy.
 - `images/` — photos, short videos, and the browser icon. See `images/README.md`.
 - `fonts/` — the Poppins typeface. You can ignore this folder.
 - `robots.txt` and `sitemap.xml` — tell search engines the site is public and that the only page is the home page.
@@ -23,12 +23,16 @@ Open `index.html` in a text editor. The prices are in the Services section. The 
 The phone number is `929-782-5530` (`tel:+19297825530`) and the email is `njahshaun@gmail.com`. They are written in a few places that have to stay in the file itself (so the page still works with JavaScript off, and so Google can read them):
 
 - the two contact cards (`site-phone` and `site-email`)
+- each **Contact us** link on a price (`tel:+19297825530`)
+- the call prompt ("Call +1 (929) 782-5530")
 - the footer phone link
 - the note inside `<noscript>` under the form
 - the form's `mailto:` action
 - the `LocalBusiness` block in the page head
 
-`script.js` copies the cards into the call sheet and the form. You do not edit the phone or email in `script.js`.
+`script.js` reads the cards for the form. You do not edit the phone or email in `script.js`.
+
+On a phone or tablet, **Contact us** starts a call. On a computer, the same link opens a small prompt with Call, Cancel, and Copy number. Call still uses the phone link, so FaceTime, Phone Link, or Skype can pick it up. The page tells those apart with a media query (`(hover: none) and (pointer: coarse)` is a phone or tablet), not by reading the browser name.
 
 ## Contact form
 

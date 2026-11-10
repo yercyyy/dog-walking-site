@@ -1123,8 +1123,13 @@ textarea[aria-invalid="true"] {
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: 0;
+  text-decoration: none;
   text-shadow: none;
   cursor: pointer;
+}
+
+.price-contact:visited {
+  color: #f7fcfb;
 }
 
 .contact-pair {
@@ -1553,7 +1558,7 @@ textarea[aria-invalid="true"] {
   height: 100%;
   max-height: none;
   background: transparent;
-  color: #1c1c1e;
+  color: var(--sea-ink);
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
 }
@@ -1562,57 +1567,43 @@ textarea[aria-invalid="true"] {
   display: flex;
   position: fixed;
   inset: 0;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  overflow: hidden;
-  background: rgba(0, 0, 0, 0);
-  transition: background-color 0.34s ease;
+  overflow: auto;
+  padding: 24px 16px;
+  background: rgba(5, 16, 22, 0);
+  transition: background-color 0.28s ease;
 }
 
 #call-sheet[open].is-shown {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(5, 16, 22, 0.55);
 }
 
 #call-sheet::backdrop {
   background: transparent;
 }
 
-.call-sheet-stack {
-  width: min(400px, calc(100% - 16px));
-  margin: 0 0 calc(8px + env(safe-area-inset-bottom, 0px));
+.call-sheet-card {
+  width: min(340px, 100%);
+  margin: auto;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transform: translateY(110%);
-  transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
+  border-radius: 22px;
+  background: rgba(12, 28, 34, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  transform: translateY(10px) scale(0.98);
+  opacity: 0;
+  transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.28s ease;
 }
 
-#call-sheet.is-shown .call-sheet-stack {
-  transform: translateY(0);
-}
-
-.call-sheet-group,
-.call-sheet-cancel {
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 14px;
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  backdrop-filter: blur(24px) saturate(180%);
-}
-
-.call-sheet-group {
-  overflow: hidden;
-}
-
-.call-sheet-number {
-  margin: 0;
-  padding: 18px 16px 16px;
-  text-align: center;
-  font-family: inherit;
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  color: #1c1c1e;
+#call-sheet.is-shown .call-sheet-card {
+  transform: none;
+  opacity: 1;
 }
 
 .call-sheet-call,
@@ -1621,83 +1612,81 @@ textarea[aria-invalid="true"] {
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 57px;
+  min-height: 52px;
   margin: 0;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border: 0;
+  border-radius: 999px;
   font-family: inherit;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 1.05rem;
+  font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   text-align: center;
   text-decoration: none;
-  color: #007aff;
-  background: transparent;
+  color: #fff;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
 
-.call-sheet-call {
-  border-top: 0.5px solid rgba(60, 60, 67, 0.29);
+.call-sheet-call,
+.call-sheet-call:visited {
+  background: #0a84ff;
+  color: #fff;
 }
 
 .call-sheet-cancel {
+  background: rgba(62, 70, 74, 0.96);
+  color: #f7fcfb;
   font-weight: 600;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.96);
 }
 
-.call-sheet-call:active,
+.call-sheet-call:active {
+  background: #0066d6;
+}
+
 .call-sheet-cancel:active {
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(48, 54, 58, 0.98);
+}
+
+.call-sheet-copy {
+  align-self: center;
+  margin: 2px 0 0;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sea-gold);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+}
+
+.call-sheet-copy:active {
+  color: #fff;
 }
 
 #call-sheet :focus-visible {
-  outline: 3px solid #007aff;
-  outline-offset: -3px;
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #102e2b;
 }
 
 @media (hover: hover) {
-  .call-sheet-call:hover,
+  .call-sheet-call:hover {
+    background: #0077ea;
+    color: #fff;
+  }
+
   .call-sheet-cancel:hover {
-    background: rgba(0, 0, 0, 0.05);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  #call-sheet {
-    color: #f2f2f7;
+    background: rgba(78, 86, 90, 0.98);
   }
 
-  .call-sheet-group,
-  .call-sheet-cancel {
-    background: rgba(44, 44, 46, 0.94);
-  }
-
-  .call-sheet-number {
-    color: #f2f2f7;
-  }
-
-  .call-sheet-call,
-  .call-sheet-cancel {
-    color: #0a84ff;
-  }
-
-  .call-sheet-call {
-    border-top-color: rgba(84, 84, 88, 0.65);
-  }
-
-  .call-sheet-call:active,
-  .call-sheet-cancel:active {
-    background: rgba(255, 255, 255, 0.1);
-  }
-}
-
-@media (hover: hover) and (prefers-color-scheme: dark) {
-  .call-sheet-call:hover,
-  .call-sheet-cancel:hover {
-    background: rgba(255, 255, 255, 0.08);
+  .call-sheet-copy:hover {
+    color: #fff;
   }
 }
 
