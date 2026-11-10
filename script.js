@@ -1,5 +1,9 @@
-// Mobile menu, photo viewer, gallery videos, price-card call sheet, and the contact form.
-// Phone and email come from #site-phone and #site-email in index.html.
+// Mobile menu, photo viewer, gallery videos, price-card call prompt, and the contact form.
+// The form's phone and email come from #site-phone and #site-email in index.html.
+// Contact us links are tel:+19297825530. Phones and tablets, which match
+// (hover: none) and (pointer: coarse), follow that link and get the system
+// call sheet. Other devices get the on-page prompt, including a desktop
+// pointer that matches (hover: hover) and (pointer: fine).
 // The Formspree id is the ndw-formspree-id meta tag. Leave it empty until
 // a real form exists. Empty uses the email-app fallback.
 
@@ -108,26 +112,55 @@ function formspreeEndpoint() {
 
   const callSheet = document.querySelector("#call-sheet");
   const callCancel = document.querySelector("#call-sheet-cancel");
+  const callCopy = document.querySelector("#call-sheet-copy");
+  const callStatus = document.querySelector("#call-sheet-status");
   const contact = readContact();
-
-  if (callSheet) {
-    const numberEl = callSheet.querySelector(".call-sheet-number");
-    const callAnchor = callSheet.querySelector(".call-sheet-call");
-    if (numberEl && contact.phoneDisplay) numberEl.textContent = contact.phoneDisplay;
-    if (callAnchor && contact.phoneHref) callAnchor.setAttribute("href", contact.phoneHref);
-  }
 
   if (callSheet && typeof callSheet.showModal === "function") {
     let opener = null;
     let closing = false;
+    let copyTimer = 0;
+    const copyIdle = callCopy ? callCopy.textContent : "Copy number";
 
     function motionReduced() {
       return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     }
 
+    function useCallPrompt() {
+      // A phone or tablet primary pointer is coarse and cannot hover. Those
+      // devices follow the tel: link. Desktops match (hover: hover) and
+      // (pointer: fine). A desktop that reports no primary pointer is not a
+      // touch phone either, so it gets the prompt too. No user-agent check.
+      if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) return false;
+      return true;
+    }
+
+    function markCallLinks() {
+      const popup = useCallPrompt();
+      document.querySelectorAll("#services .price-contact").forEach(function (link) {
+        if (popup) {
+          link.setAttribute("aria-haspopup", "dialog");
+          link.setAttribute("aria-controls", "call-sheet");
+        } else {
+          link.removeAttribute("aria-haspopup");
+          link.removeAttribute("aria-controls");
+        }
+      });
+    }
+
+    function resetCopyLabel() {
+      if (copyTimer) {
+        window.clearTimeout(copyTimer);
+        copyTimer = 0;
+      }
+      if (callCopy) callCopy.textContent = copyIdle;
+      if (callStatus) callStatus.textContent = "";
+    }
+
     function openCallSheet(source) {
       if (callSheet.open || closing) return;
       opener = source;
+      resetCopyLabel();
       callSheet.showModal();
       const callLink = callSheet.querySelector(".call-sheet-call");
       if (motionReduced()) {
@@ -158,30 +191,94 @@ function formspreeEndpoint() {
       }
       closing = true;
       callSheet.classList.remove("is-shown");
-      const stack = callSheet.querySelector(".call-sheet-stack");
+      const card = callSheet.querySelector(".call-sheet-card");
       let settled = false;
       function done(event) {
         if (settled) return;
-        if (event && event.target !== stack) return;
+        if (event && event.target !== card) return;
         if (event && event.propertyName !== "transform") return;
         settled = true;
-        if (stack) stack.removeEventListener("transitionend", done);
+        if (card) card.removeEventListener("transitionend", done);
         finishClose();
       }
-      if (stack) stack.addEventListener("transitionend", done);
+      if (card) card.addEventListener("transitionend", done);
       window.setTimeout(function () {
         if (settled) return;
         settled = true;
-        if (stack) stack.removeEventListener("transitionend", done);
+        if (card) card.removeEventListener("transitionend", done);
         finishClose();
       }, 450);
     }
 
-    document.querySelectorAll("#services .price-contact").forEach(function (button) {
-      button.addEventListener("click", function () {
-        openCallSheet(button);
+    function numberToCopy() {
+      const callLink = callSheet.querySelector(".call-sheet-call");
+      const fromLabel = callLink ? callLink.textContent.replace(/^\s*Call\s+/i, "").trim() : "";
+      return fromLabel || "+1 (929) 782-5530";
+    }
+
+    function markCopied(ok) {
+      if (callCopy) callCopy.textContent = ok ? "Copied" : copyIdle;
+      if (callStatus) {
+        callStatus.textContent = ok
+          ? "Number copied."
+          : "Could not copy. The number is " + numberToCopy() + ".";
+      }
+      if (copyTimer) window.clearTimeout(copyTimer);
+      copyTimer = window.setTimeout(resetCopyLabel, 2000);
+    }
+
+    function fallbackCopy(text) {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.top = "0";
+      area.style.left = "-9999px";
+      document.body.appendChild(area);
+      area.focus();
+      area.select();
+      let ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch (err) {
+        ok = false;
+      }
+      document.body.removeChild(area);
+      if (callCopy) callCopy.focus();
+      return ok;
+    }
+
+    function copyNumber() {
+      const text = numberToCopy();
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        navigator.clipboard.writeText(text).then(function () {
+          markCopied(true);
+        }, function () {
+          markCopied(fallbackCopy(text));
+        });
+        return;
+      }
+      markCopied(fallbackCopy(text));
+    }
+
+    document.querySelectorAll("#services .price-contact").forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        if (event.defaultPrevented) return;
+        if (event.button && event.button !== 0) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (!useCallPrompt()) return;
+        event.preventDefault();
+        openCallSheet(link);
       });
     });
+
+    markCallLinks();
+    const touchQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
+    if (typeof touchQuery.addEventListener === "function") {
+      touchQuery.addEventListener("change", markCallLinks);
+    } else if (typeof touchQuery.addListener === "function") {
+      touchQuery.addListener(markCallLinks);
+    }
 
     const callLink = callSheet.querySelector(".call-sheet-call");
     if (callLink) {
@@ -196,8 +293,34 @@ function formspreeEndpoint() {
       });
     }
 
+    if (callCopy) {
+      callCopy.addEventListener("click", function () {
+        copyNumber();
+      });
+    }
+
     callSheet.addEventListener("click", function (event) {
       if (event.target === callSheet) closeCallSheet();
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (!callSheet.open || event.key !== "Tab") return;
+      const focusable = Array.prototype.filter.call(
+        callSheet.querySelectorAll("a[href], button:not([disabled])"),
+        function (el) { return !el.hasAttribute("hidden"); }
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      const inside = callSheet.contains(active);
+      if (event.shiftKey && (active === first || !inside)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (active === last || !inside)) {
+        event.preventDefault();
+        first.focus();
+      }
     });
 
     callSheet.addEventListener("cancel", function (event) {
@@ -208,7 +331,8 @@ function formspreeEndpoint() {
     callSheet.addEventListener("close", function () {
       closing = false;
       callSheet.classList.remove("is-shown");
-      if (opener) opener.focus();
+      resetCopyLabel();
+      if (opener && typeof opener.focus === "function") opener.focus();
       opener = null;
     });
   }
