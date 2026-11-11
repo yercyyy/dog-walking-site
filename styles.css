@@ -881,15 +881,46 @@ textarea[aria-invalid="true"] {
 }
 
 .dialog-close {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 44px;
   min-height: 44px;
-  padding: 0 14px;
-  border-radius: 999px;
-  border: 2px solid var(--line);
-  background: #fff;
-  font: inherit;
+  margin: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: #e11d1d;
+  font-family: inherit;
+  font-size: 2rem;
   font-weight: 800;
+  line-height: 1;
+  text-shadow: none;
   cursor: pointer;
   flex: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dialog-close:hover,
+.dialog-close:active {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  color: #e11d1d;
+}
+
+.dialog-close:focus {
+  outline: none;
+}
+
+.dialog-close:focus-visible {
+  outline: 2px solid #e11d1d;
+  outline-offset: 4px;
 }
 
 .dialog-card img {
