@@ -1588,6 +1588,32 @@ textarea[aria-invalid="true"] {
   color: #fff;
 }
 
+/* First-walk offer. Gold matches the kickers; weight matches the buttons. */
+.offer-note {
+  margin: 0;
+  color: var(--sea-gold);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.hero-actions .offer-note {
+  flex-basis: 100%;
+}
+
+.section-head .offer-note {
+  margin-top: 4px;
+}
+
+.form-card .offer-note {
+  margin: 0 0 16px;
+}
+
+.call-sheet-card .offer-note {
+  margin: 2px 4px 4px;
+  text-align: center;
+}
+
 #call-sheet {
   box-sizing: border-box;
   margin: 0;
