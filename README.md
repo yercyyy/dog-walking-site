@@ -1,6 +1,6 @@
-# NDW Florida
+# NDW New York
 
-A one-page website for Neighborhood Dog Walkers in Melbourne, Florida. It is plain HTML, CSS, and a little JavaScript. There is no build step.
+A one-page website for Neighborhood Dog Walkers in Brooklyn, New York. It is plain HTML, CSS, and a little JavaScript. There is no build step.
 
 Open `index.html` in a web browser to see the site. The live site is [https://ndwflorida.com](https://ndwflorida.com). A change shows up there after it is merged into `main`.
 
